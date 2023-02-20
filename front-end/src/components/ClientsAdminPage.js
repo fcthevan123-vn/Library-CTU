@@ -28,9 +28,10 @@ function ClientsAdminPage() {
     <Table responsive striped bordered hover>
       <thead>
         <tr>
-          <th>Client Id</th>
-          <th>Client Name</th>
+          <th>Id tài khoản</th>
+          <th>Họ và tên</th>
           <th>Email</th>
+          <th>MSSV</th>
         </tr>
       </thead>
       <tbody>
@@ -39,6 +40,7 @@ function ClientsAdminPage() {
             <td>{user._id}</td>
             <td>{user.name}</td>
             <td>{user.email}</td>
+            <td>{user.studentID}</td>
           </tr>
         ))}
       </tbody>

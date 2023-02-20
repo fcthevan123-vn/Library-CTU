@@ -13,7 +13,7 @@ function CheckoutForm() {
   const [alertMessage, setAlertMessage] = useState("");
   const [createOrder, { isLoading, isError, isSuccess }] =
     useCreateOrderMutation();
-  const [classCode, setClassCode] = useState("");
+  const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [paying, setPaying] = useState(false);
 
@@ -55,15 +55,18 @@ function CheckoutForm() {
 
   function handlePay(e) {
     e.preventDefault();
-    createOrder({ userId: user._id, cart: user.cart, address, classCode }).then(
-      ({ data }) => {
-        if (data.length > 0) {
-          setTimeout(() => {
-            navigate("/orders");
-          }, 3000);
-        }
+    createOrder({
+      userId: user._id,
+      cart: user.cart,
+      address,
+      phone,
+    }).then(({ data }) => {
+      if (data.length > 0) {
+        setTimeout(() => {
+          navigate("/orders");
+        }, 3000);
       }
-    );
+    });
   }
 
   return (
@@ -109,12 +112,12 @@ function CheckoutForm() {
           </Col>
           <Col md={5}>
             <Form.Group className="mb-3">
-              <Form.Label>Mã lớp</Form.Label>
+              <Form.Label>Số điện thoại</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Nhập mã lớp"
-                value={classCode}
-                onChange={(e) => setClassCode(e.target.value)}
+                placeholder="Nhập số điện thoại"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 required
               />
             </Form.Group>

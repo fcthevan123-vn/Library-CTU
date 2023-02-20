@@ -24,14 +24,15 @@ const OrderSchema = mongoose.Schema(
       ref: "User",
       required: true,
     },
+
     status: {
       type: String,
       default: "processing",
     },
-    total: {
-      type: Number,
-      default: 0,
-    },
+    // total: {
+    //   type: Number,
+    //   default: 0,
+    // },
     count: {
       type: Number,
       default: 0,
@@ -44,7 +45,7 @@ const OrderSchema = mongoose.Schema(
     address: {
       type: String,
     },
-    country: {
+    phone: {
       type: String,
     },
   },

@@ -5,10 +5,10 @@ import DashboardProducts from "../components/DashboardProducts";
 import OrdersAdminPage from "../components/OrdersAdminPage";
 function AdminDashboard() {
   return (
-    <Container className="mt-5">
+    <Container fluid className="mt-5 px-4">
       <Tab.Container defaultActiveKey="products">
         <Row>
-          <Col sm={3}>
+          <Col sm={2}>
             <Nav variant="pills" className="flex-column">
               <Nav.Item style={{ cursor: "pointer" }}>
                 <Nav.Link eventKey="products">Tất cả sách</Nav.Link>
@@ -21,7 +21,7 @@ function AdminDashboard() {
               </Nav.Item>
             </Nav>
           </Col>
-          <Col sm={9}>
+          <Col sm={10}>
             <Tab.Content>
               <Tab.Pane eventKey="products">
                 <DashboardProducts />
