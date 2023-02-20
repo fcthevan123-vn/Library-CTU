@@ -10,7 +10,7 @@ import { updateProducts } from "../features/productSlice";
 import ProductPreview from "../components/ProductPreview";
 import IntroHome from "../components/IntroHome";
 import Features from "../components/Features";
-
+import Footer from "../components/Footer";
 function Home() {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
@@ -23,6 +23,7 @@ function Home() {
     <div>
       <IntroHome></IntroHome>
       <Features></Features>
+      <Footer></Footer>
     </div>
   );
 }

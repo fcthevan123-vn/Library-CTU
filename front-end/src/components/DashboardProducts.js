@@ -17,53 +17,6 @@ function DashboardProducts() {
       deletProduct({ product_id: id, user_id: user._id });
   }
 
-  //   Modal
-  //   function ModalToggle(_id) {
-  //     const [show, setShow] = useState(false);
-  //     const handleClose = () => setShow(false);
-  //     const handleShow = () => setShow(true);
-  //     console.log(_id);
-  //     return (
-  //       <>
-  //         <Button variant="danger" size="sm" onClick={handleShow}>
-  //           Xoá sách khỏi thư viện
-  //         </Button>
-
-  //         <Modal
-  //           show={show}
-  //           onHide={handleClose}
-  //           backdrop="static"
-  //           keyboard={false}
-  //         >
-  //           <Modal.Header closeButton>
-  //             <Modal.Title className="text-danger">
-  //               Cảnh báo xoá sách!!!
-  //             </Modal.Title>
-  //           </Modal.Header>
-  //           <Modal.Body>
-  //             Dữ liệu này sẽ bị xoá hoàn toàn khỏi cơ sở dữ liệu, nếu bạn đã chắc
-  //             chắn xin hãy nhấn "Đồng ý".
-  //           </Modal.Body>
-  //           <Modal.Footer>
-  //             <Button variant="secondary" size="sm" onClick={handleClose}>
-  //               Đóng
-  //             </Button>
-  //             <Button
-  //               variant="warning"
-  //               size="sm"
-  //               onClick={() =>
-  //                 deletProduct({ product_id: _id, user_id: user._id })
-  //               }
-  //               disabled={isLoading}
-  //             >
-  //               Đồng ý
-  //             </Button>
-  //           </Modal.Footer>
-  //         </Modal>
-  //       </>
-  //     );
-  //   }
-
   //  Row
   function TableRow({ pictures, _id, name, author, quantity }) {
     return (

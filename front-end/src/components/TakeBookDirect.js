@@ -1,39 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert, Button, Col, Form, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useCreateOrderMutation } from "../services/appApi";
-
-function CheckoutForm() {
+function TakeBookDirect() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [alertMessage, setAlertMessage] = useState("");
   const [createOrder, { isLoading, isError, isSuccess }] =
     useCreateOrderMutation();
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
   const [returnDate, setReturnDate] = useState("");
+  const [takeBookDate, setTakeBookDate] = useState("");
 
-  function handlePay(e) {
-    e.preventDefault();
+  function handleRent() {
+    console.log(returnDate, takeBookDate);
     createOrder({
       userId: user._id,
       cart: user.cart,
-      address,
-      phone,
-      returnDate,
-      ship: true,
-    }).then(({ data }) => {
-      console.log(data);
-      setTimeout(() => {
-        // navigate("/orders");
-      }, 1000);
-    });
+      returnDate: returnDate,
+      takeBookDate: takeBookDate,
+      ship: false,
+    })
+      .then(({ data }) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleRent();
+  };
 
   return (
     <Col className="cart-payment-container">
-      <Form onSubmit={handlePay}>
+      <Form onSubmit={handleSubmit}>
         <Row>
           {alertMessage && <Alert>{alertMessage}</Alert>}
           <Col md={6}>
@@ -62,13 +65,11 @@ function CheckoutForm() {
         <Row>
           <Col md={6}>
             <Form.Group className="mb-3">
-              <Form.Label>Số điện thoại</Form.Label>
+              <Form.Label>Ngày đến nhận sách</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="Nhập số điện thoại"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                type="date"
                 required
+                onChange={(e) => setReturnDate(e.target.value)}
               />
             </Form.Group>
           </Col>
@@ -78,22 +79,10 @@ function CheckoutForm() {
               <Form.Control
                 type="date"
                 required
-                onChange={(e) => setReturnDate(e.target.value)}
+                onChange={(e) => setTakeBookDate(e.target.value)}
               />
             </Form.Group>
           </Col>
-        </Row>
-        <Row>
-          <Form.Group className="mb-3">
-            <Form.Label>Địa chỉ</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Nhập địa chỉ"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              required
-            />
-          </Form.Group>
         </Row>
         <Button className="mt-3" type="submit">
           Mượn sách ngay
@@ -103,4 +92,4 @@ function CheckoutForm() {
   );
 }
 
-export default CheckoutForm;
+export default TakeBookDirect;

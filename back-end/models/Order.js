@@ -24,22 +24,16 @@ const OrderSchema = mongoose.Schema(
       ref: "User",
       required: true,
     },
-
     status: {
       type: String,
-      default: "processing",
+      default: "Đang xử lý",
     },
-    // total: {
-    //   type: Number,
-    //   default: 0,
-    // },
     count: {
       type: Number,
       default: 0,
     },
     date: {
       type: String,
-      // default: new Date().toISOString().split('T')[0]
       default: formattedDate,
     },
     address: {
@@ -47,6 +41,18 @@ const OrderSchema = mongoose.Schema(
     },
     phone: {
       type: String,
+    },
+    ship: {
+      type: Boolean,
+      default: false,
+    },
+    returnDate: {
+      type: String,
+      default: "",
+    },
+    takeBookDate: {
+      type: String,
+      default: "",
     },
   },
   { minimize: false }

@@ -29,7 +29,7 @@ function OrdersPage() {
   }
 
   if (orders.length === 0) {
-    return <h1 className="text-center pt-3">No orders yet</h1>;
+    return <h1 className="text-center pt-3">Không có order nào ở đây</h1>;
   }
 
   return (

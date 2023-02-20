@@ -3,9 +3,9 @@ const Order = require("../models/Order");
 const User = require("../models/User");
 
 //creating an order
-
 router.post("/", async (req, res) => {
   const { userId, cart, phone, address } = req.body;
+  const { returnDate, takeBookDate, ship } = req.body;
   try {
     const user = await User.findById(userId);
     const order = await Order.create({
@@ -13,11 +13,13 @@ router.post("/", async (req, res) => {
       products: cart,
       phone,
       address,
+      returnDate,
+      takeBookDate,
+      ship,
     });
-    order.count = cart.length;
-    // order.total = cart.total;
+    order.count = user.cart.length;
     await order.save();
-    user.cart = { total: 0, count: 0 };
+    user.cart = {};
     user.orders.push(order);
     user.markModified("orders");
     await user.save();

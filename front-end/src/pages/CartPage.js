@@ -5,12 +5,9 @@ import { Alert, Col, Container, Row, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import CheckoutForm from "../components/CheckoutForm";
 import { UilTimesCircle } from "@iconscout/react-unicons";
-import {
-  useIncreaseCartProductMutation,
-  useDecreaseCartProductMutation,
-  useRemoveFromCartMutation,
-} from "../services/appApi";
+import { useRemoveFromCartMutation } from "../services/appApi";
 import "./CartPage.css";
+import TableCheckOut from "../components/TableCheckOut";
 
 const stripePromise = loadStripe(
   "pk_test_51MaxJlDIyKNdpmVskApvFajebDx8Itp6gZaSOiz73uJzTN3YnzqVy3YRldLyTo4TNSH38Gg8hu1gQlUgc5CgiKm200Y68YhoPo"
@@ -21,15 +18,7 @@ function CartPage() {
   const products = useSelector((state) => state.products);
   const userCartObj = user.cart;
   let cart = products.filter((product) => userCartObj[product._id] != null);
-  const [increaseCart] = useIncreaseCartProductMutation();
-  const [decreaseCart] = useDecreaseCartProductMutation();
   const [removeFromCart, { isLoading }] = useRemoveFromCartMutation();
-
-  function handleDecrease(product) {
-    const quantity = user.cart.count;
-    if (quantity <= 0) return alert("Can't proceed");
-    decreaseCart(product);
-  }
 
   return (
     <Container
@@ -45,9 +34,7 @@ function CartPage() {
               Cặp sách đang trống, hãy thêm sách ngay!
             </Alert>
           ) : (
-            <Elements stripe={stripePromise}>
-              <CheckoutForm />
-            </Elements>
+            <TableCheckOut></TableCheckOut>
           )}
         </Col>
         {cart.length > 0 && (
@@ -69,17 +56,6 @@ function CartPage() {
                     <tr>
                       <td>
                         {!isLoading && (
-                          // <i
-                          //   className="fa fa-times"
-                          //   style={{ marginRight: 10, cursor: "pointer" }}
-                          //   onClick={() =>
-                          //     removeFromCart({
-                          //       productId: item._id,
-                          //       price: item.price,
-                          //       userId: user._id,
-                          //     })
-                          //   }
-                          // ></i>
                           <UilTimesCircle
                             className="btn-remove"
                             style={{

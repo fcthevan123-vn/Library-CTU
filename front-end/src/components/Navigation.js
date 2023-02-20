@@ -34,11 +34,7 @@ function Navigation() {
   }
 
   return (
-    <Navbar
-      bg="light"
-      className="shadow-sm  bg-body-tertiary rounded"
-      expand="lg"
-    >
+    <Navbar bg="light" className="shadow  bg-body-tertiary rounded" expand="lg">
       <Container>
         <UilBookOpen className="me-2"></UilBookOpen>
         <>
