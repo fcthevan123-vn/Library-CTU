@@ -53,10 +53,10 @@ const UserSchema = mongoose.Schema(
 
 UserSchema.statics.findByCredentials = async function (email, password) {
   const user = await User.findOne({ email });
-  if (!user) throw new Error("invalid credentials");
+  if (!user) throw new Error("Sai thông tin đăng nhập hoặc mật khẩu!");
   const isSamePassword = bcrypt.compareSync(password, user.password);
   if (isSamePassword) return user;
-  throw new Error("invalid credentials");
+  throw new Error("Sai thông tin đăng nhập hoặc mật khẩu!");
 };
 
 UserSchema.methods.toJSON = function () {

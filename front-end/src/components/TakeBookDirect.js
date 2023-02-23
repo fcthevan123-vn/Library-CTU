@@ -69,7 +69,7 @@ function TakeBookDirect() {
               <Form.Control
                 type="date"
                 required
-                onChange={(e) => setReturnDate(e.target.value)}
+                onChange={(e) => setTakeBookDate(e.target.value)}
               />
             </Form.Group>
           </Col>
@@ -79,7 +79,7 @@ function TakeBookDirect() {
               <Form.Control
                 type="date"
                 required
-                onChange={(e) => setTakeBookDate(e.target.value)}
+                onChange={(e) => setReturnDate(e.target.value)}
               />
             </Form.Group>
           </Col>

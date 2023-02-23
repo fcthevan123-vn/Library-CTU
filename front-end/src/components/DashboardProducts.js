@@ -41,6 +41,7 @@ function DashboardProducts() {
 
             <Link
               to={`/product/${_id}/edit`}
+              a
               className="btn btn-sm btn-warning mt-2"
             >
               Chỉnh sửa sách
@@ -59,7 +60,7 @@ function DashboardProducts() {
           <th>ID sách</th>
           <th>Tên sách</th>
           <th>Tác giả</th>
-          <th>Số lượng</th>
+          <th>Số lượng còn lại</th>
           <th>Chỉnh sửa</th>
         </tr>
       </thead>

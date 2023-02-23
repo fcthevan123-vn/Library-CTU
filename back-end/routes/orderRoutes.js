@@ -1,13 +1,40 @@
 const router = require("express").Router();
 const Order = require("../models/Order");
 const User = require("../models/User");
-
+const Product = require("../models/Product");
 //creating an order
+// router.post("/", async (req, res) => {
+//   const { userId, cart, phone, address } = req.body;
+//   const { returnDate, takeBookDate, ship } = req.body;
+//   try {
+//     const user = await User.findById(userId);
+//     const order = await Order.create({
+//       owner: user._id,
+//       products: cart,
+//       phone,
+//       address,
+//       returnDate,
+//       takeBookDate,
+//       ship,
+//     });
+//     order.count = user.cart.length;
+//     await order.save();
+//     user.cart = {};
+//     user.orders.push(order);
+//     user.markModified("orders");
+//     await user.save();
+//     res.status(200).json(user);
+//   } catch (e) {
+//     res.status(400).json(e.message);
+//   }
+// });
+
 router.post("/", async (req, res) => {
   const { userId, cart, phone, address } = req.body;
   const { returnDate, takeBookDate, ship } = req.body;
   try {
     const user = await User.findById(userId);
+    const arrayCart = Object.keys(cart);
     const order = await Order.create({
       owner: user._id,
       products: cart,
@@ -16,6 +43,11 @@ router.post("/", async (req, res) => {
       returnDate,
       takeBookDate,
       ship,
+    });
+    arrayCart.map(async (product_id) => {
+      const product = await Product.findById(product_id);
+      product.quantity -= 1;
+      await product.save();
     });
     order.count = user.cart.length;
     await order.save();
@@ -32,7 +64,13 @@ router.post("/", async (req, res) => {
 // getting all orders;
 router.get("/", async (req, res) => {
   try {
-    const orders = await Order.find().populate("owner", ["email", "name"]);
+    // get owner object contain email, name, studentID, order fields
+    const orders = await Order.find().populate("owner", [
+      "email",
+      "name",
+      "studentID",
+      "orders",
+    ]);
     res.status(200).json(orders);
   } catch (e) {
     res.status(400).json(e.message);
@@ -42,20 +80,12 @@ router.get("/", async (req, res) => {
 //shipping order
 
 router.patch("/:id/mark-shipped", async (req, res) => {
-  const io = req.app.get("socketio");
   const { ownerId } = req.body;
   const { id } = req.params;
   try {
     const user = await User.findById(ownerId);
     await Order.findByIdAndUpdate(id, { status: "shipped" });
     const orders = await Order.find().populate("owner", ["email", "name"]);
-    const notification = {
-      status: "unread",
-      message: `Order ${id} shipped with success`,
-      time: new Date(),
-    };
-    io.sockets.emit("notification", notification, ownerId);
-    user.notifications.push(notification);
     await user.save();
     res.status(200).json(orders);
   } catch (e) {

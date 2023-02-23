@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import axios from "../axios";
 import Loading from "./Loading";
 import Pagination from "./Pagination";
+import { UilEye } from "@iconscout/react-unicons";
 
 function OrdersAdminPage() {
   const [orders, setOrders] = useState([]);
@@ -32,6 +33,7 @@ function OrdersAdminPage() {
     console.log(productsToShow);
     setShow(true);
     setOrderToShow(productsToShow);
+    console.log(orderToShow);
   }
 
   useEffect(() => {
@@ -55,21 +57,35 @@ function OrdersAdminPage() {
     return <h1 className="text-center pt-4">Không có yêu cầu nào ở đây</h1>;
   }
 
-  function TableRow({ _id, count, owner, total, status, products, address }) {
+  function TableRow({ _id, owner, status, products, address }) {
     return (
       <tr>
         <td>{_id}</td>
         <td>{owner?.name}</td>
-        <td>{count}</td>
-        <td>{total}</td>
-        <td>{address}</td>
+        <td>{owner.studentID}</td>
+        <td>{Object.keys(products).length}</td>
         <td>
-          {status === "processing" ? (
-            <Button size="sm" onClick={() => markShipped(_id, owner?._id)}>
-              Đánh dấu đã được gửi
-            </Button>
+          {address ? (
+            <Badge bg="info">{address}</Badge>
           ) : (
+            <Badge bg="warning">Nhận trực tiếp tại thư viện</Badge>
+          )}
+        </td>
+        <td>
+          {status === "Đang xử lý" ? (
+            address ? (
+              <Button size="sm" onClick={() => markShipped(_id, owner?._id)}>
+                Đánh dấu đã được gửi
+              </Button>
+            ) : (
+              <Button size="sm" onClick={() => markShipped(_id, owner?._id)}>
+                Đánh dấu đã nhận sách
+              </Button>
+            )
+          ) : address ? (
             <Badge bg="success">Đã gửi</Badge>
+          ) : (
+            <Badge bg="success">Đã nhận</Badge>
           )}
         </td>
         <td>
@@ -77,7 +93,7 @@ function OrdersAdminPage() {
             style={{ cursor: "pointer" }}
             onClick={() => showOrder(products)}
           >
-            Xem chi tiết <i className="fa fa-eye"></i>
+            Xem chi tiết <UilEye></UilEye>
           </span>
         </td>
       </tr>
@@ -113,18 +129,19 @@ function OrdersAdminPage() {
           <Modal.Title>Chi tiết mượn sách:</Modal.Title>
         </Modal.Header>
         {orderToShow.map((order) => (
-          <div className="order-details__container d-flex justify-content-around py-2">
-            <img
-              src={order.pictures[0].url}
-              style={{ maxWidth: 100, height: 100, objectFit: "cover" }}
-            />
-            <p>
-              <span>{order.count} x </span> {order.name}
-            </p>
-            <p>Phí: ${Number(order.price) * order.count}</p>
+          <div>
+            <div className="order-details__container d-flex justify-content-around py-2">
+              <img
+                src={order.pictures[0].url}
+                style={{ maxWidth: 100, height: 100, objectFit: "cover" }}
+              />
+              <p>{order.name}</p>
+              <p>{order.author}</p>
+            </div>
+            <hr style={{ backgroundColor: "#dee2e6", opacity: "1" }}></hr>
           </div>
         ))}
-        <Modal.Footer>
+        <Modal.Footer style={{ borderTop: "0px" }}>
           <Button variant="secondary" onClick={handleClose}>
             Đóng
           </Button>

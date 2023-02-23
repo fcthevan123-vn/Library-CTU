@@ -9,17 +9,13 @@ import { useRemoveFromCartMutation } from "../services/appApi";
 import "./CartPage.css";
 import TableCheckOut from "../components/TableCheckOut";
 
-const stripePromise = loadStripe(
-  "pk_test_51MaxJlDIyKNdpmVskApvFajebDx8Itp6gZaSOiz73uJzTN3YnzqVy3YRldLyTo4TNSH38Gg8hu1gQlUgc5CgiKm200Y68YhoPo"
-);
-
 function CartPage() {
   const user = useSelector((state) => state.user);
   const products = useSelector((state) => state.products);
   const userCartObj = user.cart;
   let cart = products.filter((product) => userCartObj[product._id] != null);
   const [removeFromCart, { isLoading }] = useRemoveFromCartMutation();
-
+  Object.keys(userCartObj).map((product) => console.log(product));
   return (
     <Container
       fluid
@@ -30,7 +26,7 @@ function CartPage() {
         <Col>
           <h1 className="py-4 h3">Cặp sách của {user.name}</h1>
           {cart.length == 0 ? (
-            <Alert variant="info">
+            <Alert variant="info" style={{ margin: "0 350px" }}>
               Cặp sách đang trống, hãy thêm sách ngay!
             </Alert>
           ) : (
@@ -65,7 +61,6 @@ function CartPage() {
                             onClick={() =>
                               removeFromCart({
                                 productId: item._id,
-                                price: item.price,
                                 userId: user._id,
                               })
                             }

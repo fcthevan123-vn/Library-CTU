@@ -21,7 +21,7 @@ function ClientsAdminPage() {
   }, []);
 
   if (loading) return <Loading />;
-  if (users?.length == 0)
+  if (users?.length === 0)
     return <h2 className="py-2 text-center">No users yet</h2>;
 
   return (

@@ -101,6 +101,7 @@ function Navigation() {
 
                   <NavDropdown.Divider />
                   <Button
+                    size="sm"
                     variant="danger"
                     onClick={handleLogout}
                     className="logout-btn"
