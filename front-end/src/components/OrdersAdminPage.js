@@ -30,10 +30,8 @@ function OrdersAdminPage() {
       delete productCopy.description;
       return productCopy;
     });
-    console.log(productsToShow);
     setShow(true);
     setOrderToShow(productsToShow);
-    console.log(orderToShow);
   }
 
   useEffect(() => {
@@ -57,13 +55,34 @@ function OrdersAdminPage() {
     return <h1 className="text-center pt-4">Không có yêu cầu nào ở đây</h1>;
   }
 
-  function TableRow({ _id, owner, status, products, address }) {
+  function TableRow({
+    _id,
+    owner,
+    status,
+    products,
+    address,
+    returnDate,
+    takeBookDate,
+    ship,
+    date,
+  }) {
+    // Format date
+    const arrReturnDate = returnDate.split("-");
+    const arrTakeBookDate = takeBookDate.split("-");
+    arrReturnDate.reverse();
+    arrTakeBookDate.reverse();
+    const newReturnDate = arrReturnDate.join("-");
+    const newTakeBookDate = arrTakeBookDate.join("-");
+
+    // increase date
+
     return (
       <tr>
         <td>{_id}</td>
         <td>{owner?.name}</td>
         <td>{owner.studentID}</td>
-        <td>{Object.keys(products).length}</td>
+        <td>{ship ? "" : newTakeBookDate}</td>
+        <td>{newReturnDate}</td>
         <td>
           {address ? (
             <Badge bg="info">{address}</Badge>
@@ -108,7 +127,8 @@ function OrdersAdminPage() {
             <th>ID mượn sách</th>
             <th>Họ và tên</th>
             <th>MSSV</th>
-            <th>Số sách</th>
+            <th>Ngày lấy sách</th>
+            <th>Ngày trả sách</th>
             <th>Địa chỉ</th>
             <th>Xác nhận</th>
           </tr>

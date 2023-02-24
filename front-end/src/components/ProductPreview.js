@@ -14,7 +14,7 @@ function ProductPreview({
     <LinkContainer
       to={`/product/${_id}`}
       style={{ cursor: "pointer", width: "13rem", margin: "10px" }}
-      className="shadow-sm  bg-body-tertiary rounded"
+      className="rounded m-4 item-book"
     >
       <Card style={{ width: "20rem", margin: "10px" }}>
         <div className="img-wrapper">

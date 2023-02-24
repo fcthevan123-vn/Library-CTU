@@ -3,31 +3,6 @@ const Order = require("../models/Order");
 const User = require("../models/User");
 const Product = require("../models/Product");
 //creating an order
-// router.post("/", async (req, res) => {
-//   const { userId, cart, phone, address } = req.body;
-//   const { returnDate, takeBookDate, ship } = req.body;
-//   try {
-//     const user = await User.findById(userId);
-//     const order = await Order.create({
-//       owner: user._id,
-//       products: cart,
-//       phone,
-//       address,
-//       returnDate,
-//       takeBookDate,
-//       ship,
-//     });
-//     order.count = user.cart.length;
-//     await order.save();
-//     user.cart = {};
-//     user.orders.push(order);
-//     user.markModified("orders");
-//     await user.save();
-//     res.status(200).json(user);
-//   } catch (e) {
-//     res.status(400).json(e.message);
-//   }
-// });
 
 router.post("/", async (req, res) => {
   const { userId, cart, phone, address } = req.body;

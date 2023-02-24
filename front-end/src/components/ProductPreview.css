@@ -1,2 +1,11 @@
-.card {
+.item-book {
+  transition-duration: 500ms;
+  transition-timing-function: ease;
+  transition-property: transform;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.item-book:is(:hover, :focus) {
+  transform: scale(1.1);
 }
