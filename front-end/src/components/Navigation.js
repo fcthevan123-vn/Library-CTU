@@ -51,31 +51,19 @@ function Navigation() {
         <Row>
           <Col
             md={3}
-            className="d-flex justify-content-center align-items-center home-group"
+            className="d-flex justify-content-center align-items-center "
           >
-            <UilBookOpen className="me-2"></UilBookOpen>
-            <>
+            <div className="home-group">
+              <UilBookOpen className="me-2"></UilBookOpen>
               <LinkContainer to="/">
                 <Navbar.Brand className="">CTU's Library</Navbar.Brand>
               </LinkContainer>
-            </>
+            </div>
+            <LinkContainer to="/all-book" className="btn-hover">
+              <Nav.Link className="">Thư viện sách</Nav.Link>
+            </LinkContainer>
           </Col>
-          <Col
-            md={6}
-            className="d-flex justify-content-center align-items-center list-button"
-          >
-            <>
-              <LinkContainer to="/all-book" className="btn-hover">
-                <Nav.Link className="">Thư viện sách</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/all-book" className="btn-hover">
-                <Nav.Link className="">Thư viện sách</Nav.Link>
-              </LinkContainer>
-              <LinkContainer to="/all-book" className="btn-hover">
-                <Nav.Link className="">Thư viện sách</Nav.Link>
-              </LinkContainer>
-            </>
-          </Col>
+          <Col md={6} className=""></Col>
           <Col
             md={3}
             className="d-flex justify-content-center align-items-center "

@@ -41,6 +41,7 @@ function OrdersPage() {
   }
 
   function showOrder(productsObj) {
+    console.log(productsObj);
     let productsToShow = products.filter((product) => productsObj[product._id]);
     productsToShow = productsToShow.map((product) => {
       const productCopy = { ...product };
@@ -49,6 +50,7 @@ function OrdersPage() {
       return productCopy;
     });
     setOrderToShow(productsToShow);
+    console.log(orderToShow);
     setShow(true);
   }
 
@@ -68,7 +70,7 @@ function OrdersPage() {
   if (orders.length === 0) {
     return <h1 className="text-center pt-3">Không có order nào ở đây</h1>;
   }
-  console.log(orders);
+
   return (
     <Container>
       <h1 className="text-center my-4">Danh sách mượn sách của {user.name}</h1>

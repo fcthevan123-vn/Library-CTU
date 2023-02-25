@@ -91,6 +91,7 @@ function ProductPage() {
           <p style={{ textAlign: "justify" }} className="py-2">
             <strong>Số lượng còn lại: </strong> {product.quantity}
           </p>
+          {/* if user */}
           {user && !user.isAdmin && (
             <ButtonGroup style={{ width: "90%" }}>
               <Button
@@ -110,6 +111,15 @@ function ProductPage() {
               </Button>
             </ButtonGroup>
           )}
+
+          {/* if not user */}
+          {!user && (
+            <Badge pill bg="warning" className="not_user-badge">
+              Hãy đăng nhập để mượn sách ngay
+            </Badge>
+          )}
+
+          {/* if admin */}
           {user && user.isAdmin && (
             <LinkContainer to={`/product/${product._id}/edit`}>
               <Button variant="warning" size="lg">

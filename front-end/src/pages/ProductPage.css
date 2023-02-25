@@ -1,10 +1,20 @@
 .product__carousel--image {
-    max-width: 100%;
-    object-fit: cover;
-    max-height: 500px;
+  max-width: 100%;
+  object-fit: cover;
+  max-height: 500px;
 }
 
 .alice-carousel__prev-btn,
 .alice-carousel__next-btn {
-    display: none !important;
+  display: none !important;
+}
+
+.not_user-badge {
+  width: 50%;
+  height: 40px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
 }

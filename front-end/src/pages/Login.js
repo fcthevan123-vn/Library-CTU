@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Row, Alert } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../services/appApi";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [login, { isError, isLoading, error }] = useLoginMutation();
+  const navigate = useNavigate();
   function handleLogin(e) {
     e.preventDefault();
     login({ email, password });
+    setTimeout(() => {
+      navigate("/all-book");
+    }, 1000);
   }
   return (
     <Container>

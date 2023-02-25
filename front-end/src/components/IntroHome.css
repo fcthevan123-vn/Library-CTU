@@ -1,0 +1,7 @@
+.link-to-ctu {
+  text-decoration: none;
+}
+
+.link-to-ctu:hover {
+  color: #fff !important;
+}

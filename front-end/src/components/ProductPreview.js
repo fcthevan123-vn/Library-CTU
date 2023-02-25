@@ -2,14 +2,7 @@ import React from "react";
 import { Badge, Card, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import "./ProductPreview.css";
-function ProductPreview({
-  _id,
-  category,
-  name,
-  pictures,
-  description,
-  author,
-}) {
+function ProductPreview({ _id, category, name, pictures, author }) {
   return (
     <LinkContainer
       to={`/product/${_id}`}

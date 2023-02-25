@@ -1,10 +1,10 @@
 import React from "react";
-
+import { LinkContainer } from "react-router-bootstrap";
+import "./IntroHome.css";
 function IntroHome() {
   return (
     <div className="py-3">
       <div className="px-4 py-1 my-5 text-center ">
-        {/* style={{ height: "70vh" }} */}
         {/* logo CTU */}
         <img
           className="d-block mx-auto mb-4 border border-dark-subtle rounded-pill shadow  mb-5 bg-body-tertiary"
@@ -19,14 +19,25 @@ function IntroHome() {
             Mượn sách một cách nhanh chóng, dễ dàng và rất tiện ích!
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <button type="button" className="btn btn-primary btn-lg px-4 gap-3">
-              Mượn sách ngay
-            </button>
+            <LinkContainer to="/login">
+              <button
+                type="button"
+                className="btn btn-primary btn-lg px-4 gap-3"
+              >
+                Mượn sách ngay
+              </button>
+            </LinkContainer>
             <button
               type="button"
               className="btn btn-outline-secondary btn-lg px-4"
             >
-              Xem thông tin về chúng tôi
+              <a
+                href="https://lrc.ctu.edu.vn/index.php/aboutus/intro"
+                target="_blank"
+                className="link-to-ctu text-secondary"
+              >
+                Xem thông tin về chúng tôi
+              </a>
             </button>
           </div>
         </div>
