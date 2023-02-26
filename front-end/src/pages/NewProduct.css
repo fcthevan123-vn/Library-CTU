@@ -1,39 +1,46 @@
 .images-preview-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100px, 100%), 1fr));
-    gap: 10px;
-    margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100px, 100%), 1fr));
+  gap: 10px;
+  margin-top: 40px;
 }
 
 .image-preview {
-    width: 100px;
-    display: inline-block;
-    position: relative;
+  width: 100px;
+  display: inline-block;
+  position: relative;
 }
 
 .image-preview img {
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 10px;
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .image-preview i,
 .remove-img-spinner {
-    position: absolute;
-    top: -12px;
-    left: -12px;
-    font-size: 20px;
-    cursor: pointer;
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  font-size: 20px;
+  cursor: pointer;
 }
 
 .image-preview i:hover {
-    color: orange;
+  color: orange;
 }
 
 .new-product__image--container {
-    background-image: url(https://images.unsplash.com/photo-1652773899966-583e9d2f2fb0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MzR8fHRlY2h8ZW58MHwxfDB8d2hpdGV8&auto=format&fit=crop&w=800&q=60);
-    background-size: cover;
-    background-position: center;
-    height: 100vh;
+  background-image: url(https://scontent.fsgn5-6.fna.fbcdn.net/v/t39.30808-6/332578808_1360524861429702_1758022044693307925_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=4KQE6pyDOh8AX8aO3Cw&_nc_ht=scontent.fsgn5-6.fna&oh=00_AfCh1QLzOvpJYWJMu_GHcTpoT2POz6og4-KKqzltlckkdg&oe=64006756);
+  background-size: cover;
+  background-position: center;
+  height: 100;
+}
+
+.edit-product__image--container {
+  background-image: url(https://scontent.fsgn5-2.fna.fbcdn.net/v/t39.30808-6/332522007_1564875880645879_7455697277753212294_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=gV0DCAYiSQ0AX-h7HiF&_nc_ht=scontent.fsgn5-2.fna&oh=00_AfBz22NamGYQCW81F8NKyp5V4Vvo_rKQSRj4UF1I9kbNyg&oe=640003DA);
+  background-size: cover;
+  background-position: center;
+  height: 100;
 }

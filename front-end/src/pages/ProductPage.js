@@ -92,7 +92,7 @@ function ProductPage() {
             <strong>Số lượng còn lại: </strong> {product.quantity}
           </p>
           {/* if user */}
-          {user && !user.isAdmin && (
+          {user && !user.isAdmin && product.quantity > 0 ? (
             <ButtonGroup style={{ width: "90%" }}>
               <Button
                 variant="warning"
@@ -109,6 +109,14 @@ function ProductPage() {
               >
                 Thêm vào cặp sách
               </Button>
+            </ButtonGroup>
+          ) : (
+            <ButtonGroup style={{ width: "90%" }}>
+              <ButtonGroup style={{ width: "90%" }}>
+                <Button variant="danger" className="w-25" size="md" disabled>
+                  Sách này đã hết
+                </Button>
+              </ButtonGroup>
             </ButtonGroup>
           )}
 

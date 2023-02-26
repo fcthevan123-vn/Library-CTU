@@ -43,6 +43,7 @@ function OrdersPage() {
   function showOrder(productsObj) {
     console.log(productsObj);
     let productsToShow = products.filter((product) => productsObj[product._id]);
+    console.log(productsToShow);
     productsToShow = productsToShow.map((product) => {
       const productCopy = { ...product };
       productCopy.count = productsObj[product._id];
@@ -50,7 +51,6 @@ function OrdersPage() {
       return productCopy;
     });
     setOrderToShow(productsToShow);
-    console.log(orderToShow);
     setShow(true);
   }
 

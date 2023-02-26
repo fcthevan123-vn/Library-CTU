@@ -224,7 +224,7 @@ function EditProductPage() {
             </Form.Group>
           </Form>
         </Col>
-        <Col md={6} className="new-product__image--container"></Col>
+        <Col md={6} className="edit-product__image--container"></Col>
       </Row>
     </Container>
   );

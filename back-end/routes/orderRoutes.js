@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
     });
     arrayCart.map(async (product_id) => {
       const product = await Product.findById(product_id);
-      product.quantity -= 1;
+      product.quantity -= cart[product_id];
       await product.save();
     });
     order.count = user.cart.length;

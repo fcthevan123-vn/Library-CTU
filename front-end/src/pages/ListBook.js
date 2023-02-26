@@ -40,7 +40,13 @@ function ListBook() {
         <Tab eventKey="all book" title="Tất cả sách">
           <div className="d-flex justify-content-center flex-wrap">
             {productsSearch.length > 0 ? (
-              productsSearch.map((product) => <ProductPreview {...product} />)
+              productsSearch.map((product) =>
+                product.quantity > 0 ? (
+                  <ProductPreview {...product} />
+                ) : (
+                  <ProductPreview {...product} disable={true} />
+                )
+              )
             ) : (
               <h4>Không có sách nào có chứa "{searchTerm}"</h4>
             )}
