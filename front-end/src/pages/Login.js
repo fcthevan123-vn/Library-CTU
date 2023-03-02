@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Col, Container, Form, Row, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../services/appApi";
+import ToastMessage from "../components/ToastMessage";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ function Login() {
     login({ email, password });
     setTimeout(() => {
       navigate("/all-book");
-    }, 1000);
+    }, 3000);
   }
   return (
     <Container>
@@ -22,6 +23,15 @@ function Login() {
           <Form style={{ width: "100%" }} onSubmit={handleLogin}>
             <h1>Đăng nhập vào tài khoản của bạn</h1>
             {isError && <Alert variant="danger">{error.data}</Alert>}
+            {!isError && (
+              <ToastMessage
+                space="mt-5 me-2"
+                bg="light"
+                title="Đăng xuất"
+                body="Bạn đã đăng xuất thành công"
+              ></ToastMessage>
+            )}
+
             <Form.Group className="my-3">
               <Form.Label className="d-flex fs-5">Email:</Form.Label>
               <Form.Control

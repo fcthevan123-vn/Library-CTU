@@ -96,7 +96,12 @@ function OrdersPage() {
                   }`}
                   text="white"
                 >
-                  {order.status}
+                  {/* {order.status === "Sách đã được gửi đi" } */}
+                  {order.status === "Đang xử lý"
+                    ? order.status
+                    : order.ship
+                    ? "Sách đã được gửi đi"
+                    : "Đã nhận tại thư viện"}
                 </Badge>
               </td>
               <td>{order.date}</td>

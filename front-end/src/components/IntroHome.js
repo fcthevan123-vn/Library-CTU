@@ -1,7 +1,11 @@
 import React from "react";
 import { LinkContainer } from "react-router-bootstrap";
+import { useSelector } from "react-redux";
 import "./IntroHome.css";
+
 function IntroHome() {
+  const user = useSelector((state) => state.user);
+
   return (
     <div className="py-3">
       <div className="px-4 py-1 my-5 text-center ">
@@ -13,20 +17,34 @@ function IntroHome() {
           height={140}
           width={580}
         />
-        <h1 className="display-5 fw-bold">Thư viện Trường Đại học Cần Thơ </h1>
+        <h1 className="display-5 fw-bold title-home">
+          Thư viện Trường Đại học Cần Thơ
+        </h1>
         <div className="col-lg-6 mx-auto">
           <p className="lead mb-4">
             Mượn sách một cách nhanh chóng, dễ dàng và rất tiện ích!
           </p>
           <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
-            <LinkContainer to="/login">
-              <button
-                type="button"
-                className="btn btn-primary btn-lg px-4 gap-3"
-              >
-                Mượn sách ngay
-              </button>
-            </LinkContainer>
+            {/* check user */}
+            {user ? (
+              <LinkContainer to="/all-book">
+                <button
+                  type="button"
+                  className="btn btn-primary btn-lg px-4 gap-3"
+                >
+                  Mượn sách ngay
+                </button>
+              </LinkContainer>
+            ) : (
+              <LinkContainer to="/login">
+                <button
+                  type="button"
+                  className="btn btn-primary btn-lg px-4 gap-3"
+                >
+                  Mượn sách ngay
+                </button>
+              </LinkContainer>
+            )}
             <button
               type="button"
               className="btn btn-outline-secondary btn-lg px-4"

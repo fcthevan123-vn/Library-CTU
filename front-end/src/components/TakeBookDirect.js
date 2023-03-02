@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Alert, Button, Col, Form, Row } from "react-bootstrap";
+import { Alert, Button, Col, Form, Row, Badge } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useCreateOrderMutation } from "../services/appApi";
+import "./CheckOutForm.css";
 function TakeBookDirect() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -84,7 +85,12 @@ function TakeBookDirect() {
             </Form.Group>
           </Col>
         </Row>
-        <Button className="mt-3" type="submit">
+        <Row>
+          <Badge pill bg="warning" text="dark" className="badge-ship">
+            Lưu ý hãy đến nhận sách đúng với ngày bạn đã chọn.
+          </Badge>
+        </Row>
+        <Button className="mt-3 rounded-pill" type="submit">
           Mượn sách ngay
         </Button>
       </Form>

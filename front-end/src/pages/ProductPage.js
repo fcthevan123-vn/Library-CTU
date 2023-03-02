@@ -110,7 +110,7 @@ function ProductPage() {
                 Thêm vào cặp sách
               </Button>
             </ButtonGroup>
-          ) : (
+          ) : product.quantity === "0" ? (
             <ButtonGroup style={{ width: "90%" }}>
               <ButtonGroup style={{ width: "90%" }}>
                 <Button variant="danger" className="w-25" size="md" disabled>
@@ -118,6 +118,8 @@ function ProductPage() {
                 </Button>
               </ButtonGroup>
             </ButtonGroup>
+          ) : (
+            ""
           )}
 
           {/* if not user */}
