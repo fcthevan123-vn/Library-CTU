@@ -1,6 +1,7 @@
 import axios from "../axios";
 import React, { useRef, useState } from "react";
 import ToastMessage from "./ToastMessage";
+import Login from "../pages/Login";
 import {
   Navbar,
   Button,
@@ -36,14 +37,22 @@ function Navigation() {
         className="shadow-sm  bg-body-tertiary rounded"
         expand="lg"
       >
-        {user && (
-          <ToastMessage
-            space="mt-5 me-2"
-            bg="light"
-            title="Đăng nhập"
-            body="Bạn đã đăng nhập thành công, hãy mượn sách ngay!"
-          ></ToastMessage>
-        )}
+        {user &&
+          (user.isAdmin ? (
+            <ToastMessage
+              space="mt-5 me-2"
+              bg="warning"
+              title="Đăng nhập"
+              body="Bạn đã đăng nhập với tư cách là admin, hãy cẩn thận với các thao tác của mình!"
+            ></ToastMessage>
+          ) : (
+            <ToastMessage
+              space="mt-5 me-2"
+              bg="light"
+              title="Đăng nhập"
+              body="Bạn đã đăng nhập thành công, hãy mượn sách ngay!"
+            ></ToastMessage>
+          ))}
         <Container style={{ display: "block" }}>
           <Row>
             <Col
@@ -51,9 +60,9 @@ function Navigation() {
               className="d-flex justify-content-center align-items-center "
             >
               <div className="home-group">
-                <UilBookOpen className="me-2"></UilBookOpen>
+                <UilBookOpen className="me-2 mb-1"></UilBookOpen>
                 <LinkContainer to="/">
-                  <Navbar.Brand className="">CTU's Library</Navbar.Brand>
+                  <Navbar.Brand className="">Trang chủ</Navbar.Brand>
                 </LinkContainer>
               </div>
               <LinkContainer to="/all-book" className="btn-hover">
@@ -129,7 +138,9 @@ function Navigation() {
                               <NavDropdown.Item>Cặp Sách</NavDropdown.Item>
                             </LinkContainer>
                             <LinkContainer to="/orders">
-                              <NavDropdown.Item>Orders</NavDropdown.Item>
+                              <NavDropdown.Item>
+                                Danh sách mượn sách
+                              </NavDropdown.Item>
                             </LinkContainer>
                           </>
                         )}

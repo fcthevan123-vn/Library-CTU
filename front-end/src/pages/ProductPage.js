@@ -113,7 +113,12 @@ function ProductPage() {
           ) : product.quantity === "0" ? (
             <ButtonGroup style={{ width: "90%" }}>
               <ButtonGroup style={{ width: "90%" }}>
-                <Button variant="danger" className="w-25" size="md" disabled>
+                <Button
+                  variant="danger"
+                  className="w-25 my-2"
+                  size="md"
+                  disabled
+                >
                   Sách này đã hết
                 </Button>
               </ButtonGroup>

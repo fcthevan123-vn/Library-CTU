@@ -71,7 +71,11 @@ function Signup() {
             </Form.Group>
 
             <Form.Group className="mt-4">
-              <Button type="submit" disabled={isLoading} className="w-25">
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-25 rounded-pill"
+              >
                 Đăng ký ngay
               </Button>
             </Form.Group>

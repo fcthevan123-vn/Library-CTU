@@ -55,7 +55,11 @@ function Login() {
             </Form.Group>
 
             <Form.Group>
-              <Button type="submit" disabled={isLoading} className="w-25 my-3">
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-25 my-3 rounded-pill"
+              >
                 Đăng nhập
               </Button>
             </Form.Group>
