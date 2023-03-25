@@ -1,3 +1,29 @@
-.footer-container {
-  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+.col > p {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.col > p:hover {
+  opacity: 1;
+}
+
+.info-col {
+  display: flex;
+  justify-content: center;
+  align-items: self-start;
+  flex-direction: column;
+}
+
+.social-media-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.aboutme-col {
+  display: flex;
+  justify-content: center;
+  align-items: self-end;
+  flex-direction: column;
 }

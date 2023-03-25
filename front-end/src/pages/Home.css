@@ -25,3 +25,7 @@ img.card-img-top.product-preview-img {
 .category-tile:hover {
   transform: scale(1.07);
 }
+
+.home-wrapper {
+  background-color: var(--background-color);
+}

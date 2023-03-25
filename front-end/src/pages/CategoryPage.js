@@ -6,6 +6,8 @@ import Loading from "../components/Loading";
 import ProductPreview from "../components/ProductPreview";
 import "./CategoryPage.css";
 import Pagination from "../components/Pagination";
+import { UilSearch } from "@iconscout/react-unicons";
+
 function CategoryPage() {
   const { category } = useParams();
   const [loading, setLoading] = useState(false);
@@ -52,19 +54,28 @@ function CategoryPage() {
       <div
         className={`pt-3 ${category}-banner-container category-banner-container`}
       >
-        <h1 className="text-center text-dark">
+        <h4 className="text-center fs-30">
           {category.charAt(0).toUpperCase() + category.slice(1)}
-        </h1>
+        </h4>
       </div>
       <div className="filters-container d-flex justify-content-center pt-4 pb-4">
-        <input
+        {/* <input
           type="search"
           placeholder="Search"
           onChange={(e) => setSearchTerm(e.target.value)}
-        />
+        /> */}
+        <div className="search-box search-box-category">
+          <input
+            type="search"
+            placeholder="Nhập tên sách ở đây"
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-bar fs-16"
+          />
+          <UilSearch className="search-btn"></UilSearch>
+        </div>
       </div>
       {productsSearch.length === 0 ? (
-        <h3>Không có sách với tên này</h3>
+        <h3 className="fs-22">Không có sách với tên này</h3>
       ) : (
         <Container>
           <Row>

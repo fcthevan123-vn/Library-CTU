@@ -1,0 +1,11 @@
+.feature-wrapper {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 10px;
+  padding: 10px 10px;
+  background-color: var(--group-box-color);
+}
+
+.feature-icon {
+  padding-top: 10px;
+  color: #ebb02d;
+}

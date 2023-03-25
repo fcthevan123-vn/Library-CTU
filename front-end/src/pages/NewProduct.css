@@ -32,15 +32,30 @@
 }
 
 .new-product__image--container {
-  background-image: url(https://scontent.fsgn5-6.fna.fbcdn.net/v/t39.30808-6/332578808_1360524861429702_1758022044693307925_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=4KQE6pyDOh8AX8aO3Cw&_nc_ht=scontent.fsgn5-6.fna&oh=00_AfCh1QLzOvpJYWJMu_GHcTpoT2POz6og4-KKqzltlckkdg&oe=64006756);
+  background-image: url(https://res.cloudinary.com/dvvg4xwoy/image/upload/v1679753599/332480986_1361693997953826_476625999413661845_n.jpg_evunah.jpg);
+  height: 800px;
+  width: 100%;
   background-size: cover;
-  background-position: center;
-  height: 100;
+  border-radius: 14px;
+  border: 1px solid #f0d612;
+  box-shadow: rgba(235, 176, 45, 0.4) 5px 5px, rgba(235, 176, 45, 0.3) 10px 10px,
+    rgba(235, 176, 45, 0.2) 15px 15px, rgba(235, 176, 45, 0.1) 20px 20px,
+    rgba(235, 176, 45, 0.05) 25px 25px;
 }
 
 .edit-product__image--container {
-  background-image: url(https://scontent.fsgn5-2.fna.fbcdn.net/v/t39.30808-6/332522007_1564875880645879_7455697277753212294_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=gV0DCAYiSQ0AX-h7HiF&_nc_ht=scontent.fsgn5-2.fna&oh=00_AfBz22NamGYQCW81F8NKyp5V4Vvo_rKQSRj4UF1I9kbNyg&oe=640003DA);
+  background-image: url(https://res.cloudinary.com/dvvg4xwoy/image/upload/v1679753408/332522007_1564875880645879_7455697277753212294_n.jpg_k1iqgf.jpg);
+  height: 900px;
+  width: 100%;
   background-size: cover;
-  background-position: center;
-  height: 100;
+  border-radius: 14px;
+  border: 1px solid #f0d612;
+  box-shadow: rgba(235, 176, 45, 0.4) 5px 5px, rgba(235, 176, 45, 0.3) 10px 10px,
+    rgba(235, 176, 45, 0.2) 15px 15px, rgba(235, 176, 45, 0.1) 20px 20px,
+    rgba(235, 176, 45, 0.05) 25px 25px;
+}
+
+.editProductPage-wrapper {
+  margin-top: 58px;
+  background-color: var(--background-color);
 }

@@ -6,7 +6,11 @@ function SimilarProduct({ _id, name, category, pictures }) {
   return (
     <LinkContainer
       to={`/product/${_id}`}
-      style={{ cursor: "pointer", width: "13rem", margin: "10px" }}
+      style={{
+        cursor: "pointer",
+        width: "13rem",
+        margin: "10px",
+      }}
     >
       <Card style={{ width: "20rem", margin: "10px" }}>
         <Card.Img
@@ -16,10 +20,8 @@ function SimilarProduct({ _id, name, category, pictures }) {
           style={{ height: "200px", objectFit: "cover" }}
         />
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Badge bg="warning" text="dark">
-            {category}
-          </Badge>
+          <Card.Title className="fs-16 text-long">{name}</Card.Title>
+          <Badge bg="warning">{category}</Badge>
         </Card.Body>
       </Card>
     </LinkContainer>

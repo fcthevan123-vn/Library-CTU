@@ -16,8 +16,8 @@ function ToastMessage({ bg, title, body, space }) {
         delay={3000}
         autohide
       >
-        <Toast.Header>
-          <strong className="me-auto">{title}</strong>
+        <Toast.Header className="bg-primary text-white-custom">
+          <strong className="me-auto ">{title}</strong>
           <small>now</small>
         </Toast.Header>
         <Toast.Body>{body}</Toast.Body>

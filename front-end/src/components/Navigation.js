@@ -33,11 +33,11 @@ function Navigation() {
   return (
     <>
       <Navbar
-        bg="light"
-        className="shadow-sm  bg-body-tertiary rounded"
+        bg="primary"
+        className="bg-body-tertiary navbar navbar-wrapper"
         expand="lg"
       >
-        {user &&
+        {/* {user &&
           (user.isAdmin ? (
             <ToastMessage
               space="mt-5 me-2"
@@ -52,7 +52,7 @@ function Navigation() {
               title="Đăng nhập"
               body="Bạn đã đăng nhập thành công, hãy mượn sách ngay!"
             ></ToastMessage>
-          ))}
+          ))} */}
         <Container style={{ display: "block" }}>
           <Row>
             <Col
@@ -60,13 +60,17 @@ function Navigation() {
               className="d-flex justify-content-center align-items-center "
             >
               <div className="home-group">
-                <UilBookOpen className="me-2 mb-1"></UilBookOpen>
+                <UilBookOpen className="me-2 mb-1 text-white"></UilBookOpen>
                 <LinkContainer to="/">
-                  <Navbar.Brand className="">Trang chủ</Navbar.Brand>
+                  <Navbar.Brand className="fs-14 text-white-custom">
+                    Trang chủ
+                  </Navbar.Brand>
                 </LinkContainer>
               </div>
               <LinkContainer to="/all-book" className="btn-hover">
-                <Nav.Link className="">Thư viện sách</Nav.Link>
+                <Nav.Link className="fs-14 text-white-custom">
+                  Thư viện sách
+                </Nav.Link>
               </LinkContainer>
             </Col>
             <Col md={6} className=""></Col>
@@ -84,7 +88,7 @@ function Navigation() {
                         <Button
                           size="sm"
                           variant="primary"
-                          className="login-btn rounded-pill me-2"
+                          className="login-btn rounded-pill me-2 fs-14 text-white-custom"
                         >
                           Đăng nhập
                         </Button>
@@ -93,7 +97,7 @@ function Navigation() {
                         <Button
                           size="sm"
                           variant="primary"
-                          className="login-btn rounded-pill"
+                          className="login-btn rounded-pill fs-14 text-white-custom"
                         >
                           Đăng ký
                         </Button>
@@ -103,7 +107,7 @@ function Navigation() {
                   {user && !user.isAdmin && (
                     <LinkContainer to="/cart">
                       <Nav.Link>
-                        <UilBook style={{ opacity: "0.6" }}></UilBook>
+                        <UilBook className="text-white icon-bag"></UilBook>
                         {user?.cart.count > 0 && (
                           <span className="badge badge-warning" id="cartcount">
                             {user.cart.count}
@@ -119,26 +123,31 @@ function Navigation() {
                       <NavDropdown
                         title={`${user.email}`}
                         id="basic-nav-dropdown"
+                        class="fs-14 text-white"
                       >
                         {user.isAdmin && (
                           <>
                             <LinkContainer to="/admin">
-                              <NavDropdown.Item>
+                              <NavDropdown.Item className="fs-14">
                                 Bảng điểu khiển
                               </NavDropdown.Item>
                             </LinkContainer>
                             <LinkContainer to="/new-product">
-                              <NavDropdown.Item>Tạo sách mới</NavDropdown.Item>
+                              <NavDropdown.Item className="fs-14">
+                                Tạo sách mới
+                              </NavDropdown.Item>
                             </LinkContainer>
                           </>
                         )}
                         {!user.isAdmin && (
                           <>
                             <LinkContainer to="/cart">
-                              <NavDropdown.Item>Cặp Sách</NavDropdown.Item>
+                              <NavDropdown.Item className="fs-14">
+                                Cặp Sách
+                              </NavDropdown.Item>
                             </LinkContainer>
                             <LinkContainer to="/orders">
-                              <NavDropdown.Item>
+                              <NavDropdown.Item className="fs-14">
                                 Danh sách mượn sách
                               </NavDropdown.Item>
                             </LinkContainer>
@@ -150,7 +159,7 @@ function Navigation() {
                           size="sm"
                           variant="danger"
                           onClick={handleLogout}
-                          className="logout-btn"
+                          className="logout-btn fs-14"
                         >
                           Đăng xuất
                         </Button>

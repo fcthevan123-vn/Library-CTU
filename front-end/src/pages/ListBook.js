@@ -7,6 +7,7 @@ import Tabs from "react-bootstrap/Tabs";
 import ListCategory from "../components/ListCategory";
 import "./ListBook.css";
 import { UilSearch } from "@iconscout/react-unicons";
+import Footer from "../components/Footer";
 function ListBook() {
   const [key, setKey] = useState("all book");
   const [searchTerm, setSearchTerm] = useState("");
@@ -18,45 +19,55 @@ function ListBook() {
   );
   console.log(productsSearch);
   return (
-    <Container className="mt-4 container-listbook">
-      <span className="listbook-title"> Chào mừng đến với thư viện CTU </span>
-      <div className="filters-container d-flex justify-content-center pt-4 pb-4 ">
-        <div className="search-box">
-          <input
-            type="search"
-            placeholder="Nhập tên sách ở đây"
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-bar"
-          />
-          <UilSearch className="search-btn"></UilSearch>
-        </div>
-      </div>
-      <Tabs
-        id="controlled-tab-example"
-        activeKey={key}
-        onSelect={(k) => setKey(k)}
-        className="mb-3"
-      >
-        <Tab eventKey="all book" title="Tất cả sách">
-          <div className="d-flex justify-content-center flex-wrap">
-            {productsSearch.length > 0 ? (
-              productsSearch.map((product) =>
-                product.quantity > 0 ? (
-                  <ProductPreview {...product} />
-                ) : (
-                  <ProductPreview {...product} disable={true} />
-                )
-              )
-            ) : (
-              <h4>Không có sách nào có chứa "{searchTerm}"</h4>
-            )}
+    <div>
+      <div className="listbook-wrapper">
+        <Container className="mt-4 container-listbook">
+          <span className="listbook-title fs-30 fa-bounce">
+            {" "}
+            Chào mừng đến với thư viện CTU{" "}
+          </span>
+          <div className=" d-flex justify-content-center pt-4 pb-4 ">
+            <div className="search-box">
+              <input
+                type="search"
+                placeholder="Nhập tên sách ở đây"
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-bar fs-16"
+              />
+              <UilSearch className="search-btn"></UilSearch>
+            </div>
           </div>
-        </Tab>
-        <Tab eventKey="category" title="Danh mục sách">
-          <ListCategory></ListCategory>
-        </Tab>
-      </Tabs>
-    </Container>
+          <div className="filters-container">
+            <Tabs
+              id="controlled-tab-example"
+              activeKey={key}
+              onSelect={(k) => setKey(k)}
+              className="mb-3"
+            >
+              <Tab eventKey="all book" title="Tất cả sách" className="fs-16">
+                <div className="d-flex justify-content-center flex-wrap">
+                  {productsSearch.length > 0 ? (
+                    productsSearch.map((product) =>
+                      product.quantity > 0 ? (
+                        <ProductPreview {...product} />
+                      ) : (
+                        <ProductPreview {...product} disable={true} />
+                      )
+                    )
+                  ) : (
+                    <h4>Không có sách nào có chứa "{searchTerm}"</h4>
+                  )}
+                </div>
+              </Tab>
+              <Tab eventKey="category" title="Danh mục sách">
+                <ListCategory></ListCategory>
+              </Tab>
+            </Tabs>
+          </div>
+        </Container>
+      </div>
+      <Footer></Footer>
+    </div>
   );
 }
 

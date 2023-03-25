@@ -69,7 +69,7 @@
 }
 
 .home-group {
-  opacity: 0.65;
+  opacity: 0.75;
 }
 
 .home-group:hover {
@@ -84,5 +84,33 @@
 
 .btn-hover:hover {
   color: #000;
+  opacity: 1;
+}
+
+.navbar-wrapper {
+  z-index: 10000;
+  top: 0;
+  width: 100%;
+  position: fixed !important;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+#basic-nav-dropdown,
+.icon-bag {
+  color: #fff !important;
+  opacity: 0.75;
+}
+
+#basic-nav-dropdown:hover,
+.icon-bag:hover {
+  opacity: 1;
+}
+
+.login-btn {
+  opacity: 0.75;
+}
+
+.login-btn:hover {
   opacity: 1;
 }

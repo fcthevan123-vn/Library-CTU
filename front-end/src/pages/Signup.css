@@ -1,7 +1,13 @@
 .signup__image--container {
-  background-image: url(https://scontent.fsgn5-6.fna.fbcdn.net/v/t39.30808-6/332578808_1360524861429702_1758022044693307925_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=730e14&_nc_ohc=y2mdK6a3c7IAX8ovxr1&_nc_ht=scontent.fsgn5-6.fna&oh=00_AfBByslo3xNZeWxj7-Dcx86E9J6APXJPBy8TBwEUDQxsZQ&oe=64065616);
-  height: 100vh;
+  background-image: url(https://res.cloudinary.com/dvvg4xwoy/image/upload/v1679712296/332491980_2169606376560965_5661876637663549876_n.jpg_ru7atz.jpg);
+  height: 670px;
+  width: 100%;
   background-size: cover;
+  border-radius: 14px;
+  border: 1px solid #f0d612;
+  box-shadow: rgba(235, 176, 45, 0.4) 5px 5px, rgba(235, 176, 45, 0.3) 10px 10px,
+    rgba(235, 176, 45, 0.2) 15px 15px, rgba(235, 176, 45, 0.1) 20px 20px,
+    rgba(235, 176, 45, 0.05) 25px 25px;
 }
 
 .signup__form--container,
@@ -9,14 +15,43 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 53px);
   justify-content: center;
 }
 
+.form-wrapper {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 10px;
+  padding: 10px 10px;
+  background-color: var(--group-box-color);
+}
+
 .login__image--container {
-  background-image: url(https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/332560183_2161817894010691_4941827759083956169_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=730e14&_nc_ohc=S5QuPIe6RZ8AX95rEY4&_nc_ht=scontent.fsgn5-9.fna&oh=00_AfBYZHp4XbIOrDxZU5G0cRM-nTXs-P3ZQrGL_tGBvTo1Lw&oe=640053FF);
-  height: 100vh;
+  background-image: url(https://res.cloudinary.com/dvvg4xwoy/image/upload/v1679709656/332578808_1360524861429702_1758022044693307925_n.jpg_riqoys.jpg);
+  height: 670px;
+  width: 100%;
   background-size: cover;
+  border-radius: 14px;
+  border: 1px solid #f0d612;
+  box-shadow: rgba(235, 176, 45, 0.4) 5px 5px, rgba(235, 176, 45, 0.3) 10px 10px,
+    rgba(235, 176, 45, 0.2) 15px 15px, rgba(235, 176, 45, 0.1) 20px 20px,
+    rgba(235, 176, 45, 0.05) 25px 25px;
+}
+
+.col-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background-color: var(--background-color);
+  margin-top: 53px;
+}
+
+.login-container::after {
+  content: "";
+  background-color: rgb(71, 67, 67);
 }
 
 @media screen and (max-width: 756px) {
@@ -25,6 +60,3 @@
     display: none;
   }
 }
-
-/* home https://res.cloudinary.com/learn-code-10/image/upload/v1653947013/yqajnhqf7usk56zkwqi5.png */
-/* https://res.cloudinary.com/learn-code-10/image/upload/v1654093280/xkia6f13xxlk5xvvb5ed.png sale */

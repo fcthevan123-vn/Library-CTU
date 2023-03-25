@@ -7,7 +7,7 @@ function ProductPreview({ _id, category, name, pictures, author }) {
     <LinkContainer
       to={`/product/${_id}`}
       style={{ cursor: "pointer", width: "13rem", margin: "10px" }}
-      className="rounded m-4 item-book"
+      className="m-4 item-book"
     >
       <Card style={{ width: "20rem", margin: "10px" }}>
         <div className="img-wrapper">
@@ -20,17 +20,17 @@ function ProductPreview({ _id, category, name, pictures, author }) {
         </div>
 
         <Card.Body>
-          <Card.Title>{name}</Card.Title>
-          <Card.Title className="fs-6">Tác giả :{author}</Card.Title>
+          <Card.Title className="fs-16 text-long">{name}</Card.Title>
+          <Card.Title className="fs-14 text-description">
+            Tác giả :{author}
+          </Card.Title>
 
-          <Badge bg="warning" text="dark">
-            {category}
-          </Badge>
+          <Badge bg="warning">{category}</Badge>
         </Card.Body>
         {/* <hr style={{ margin: "none" }}></hr> */}
         <div className="d-flex justify-content-center align-items-center mb-3">
-          <Button variant="primary" className="btn-sm w-50 ">
-            Xem chi tiết
+          <Button variant="primary" className="btn-sm ">
+            <span className="fs-14 text-white">Xem chi tiết</span>
           </Button>
         </div>
       </Card>

@@ -15,11 +15,13 @@ function Home() {
     axios.get("/products").then(({ data }) => dispatch(updateProducts(data)));
   }, []);
   return (
-    <div>
-      <IntroHome></IntroHome>
-      <Features></Features>
+    <>
+      <div className="home-wrapper">
+        <IntroHome></IntroHome>
+        <Features></Features>
+      </div>
       <Footer></Footer>
-    </div>
+    </>
   );
 }
 

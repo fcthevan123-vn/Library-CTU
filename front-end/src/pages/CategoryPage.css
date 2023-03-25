@@ -1,13 +1,18 @@
 .category-page-container {
-  min-height: 90vh;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  margin-top: 58px;
 }
 
 .category-banner-container {
   height: 120px;
-  background-color: #ffbd3e;
-
+  background-color: var(--warning-color);
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
+}
+
+.search-box-category {
+  position: unset !important;
 }
