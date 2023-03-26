@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useCreateOrderMutation } from "../services/appApi";
 import "./CheckOutForm.css";
+import ToastMessage from "../components/ToastMessage";
+
 function TakeBookDirect() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -12,6 +14,8 @@ function TakeBookDirect() {
     useCreateOrderMutation();
   const [returnDate, setReturnDate] = useState("");
   const [takeBookDate, setTakeBookDate] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const currentDate = new Date();
 
   function handleRent() {
     console.log(returnDate, takeBookDate);
@@ -24,10 +28,31 @@ function TakeBookDirect() {
     })
       .then(({ data }) => {
         console.log(data);
+        navigate("/orders");
       })
       .catch((error) => {
         console.log("Error:", error);
       });
+  }
+
+  function checkTakeBookDate(e) {
+    var selectedDate = new Date(e.target.value);
+    if (selectedDate <= currentDate) {
+      setShowToast(true);
+    } else {
+      setTakeBookDate(e.target.value);
+      setShowToast(false);
+    }
+  }
+
+  function checkReturnDate(e) {
+    var selectedDate = new Date(e.target.value);
+    if (selectedDate <= currentDate) {
+      setShowToast(true);
+    } else {
+      setReturnDate(e.target.value);
+      setShowToast(false);
+    }
   }
 
   const handleSubmit = (e) => {
@@ -42,8 +67,9 @@ function TakeBookDirect() {
           {alertMessage && <Alert>{alertMessage}</Alert>}
           <Col md={6}>
             <Form.Group className="mb-3">
-              <Form.Label>Họ và tên - MSSV</Form.Label>
+              <Form.Label className="fs-16">Họ và tên - MSSV:</Form.Label>
               <Form.Control
+                className="fs-14"
                 type="text"
                 placeholder="First Name"
                 value={`${user.name} - ${user.studentID}`}
@@ -53,8 +79,9 @@ function TakeBookDirect() {
           </Col>
           <Col md={6}>
             <Form.Group className="mb-3">
-              <Form.Label>Email</Form.Label>
+              <Form.Label className="fs-16">Email:</Form.Label>
               <Form.Control
+                className="fs-14"
                 type="text"
                 placeholder="Email"
                 value={user.email}
@@ -66,34 +93,44 @@ function TakeBookDirect() {
         <Row>
           <Col md={6}>
             <Form.Group className="mb-3">
-              <Form.Label>Ngày đến nhận sách</Form.Label>
+              <Form.Label className="fs-16">Ngày đến nhận sách:</Form.Label>
               <Form.Control
+                className="fs-14"
                 type="date"
                 required
-                onChange={(e) => setTakeBookDate(e.target.value)}
+                onChange={(e) => checkTakeBookDate(e)}
               />
             </Form.Group>
           </Col>
           <Col md={6}>
             <Form.Group className="mb-3">
-              <Form.Label>Ngày dự kiến trả sách</Form.Label>
+              <Form.Label className="fs-16">Ngày dự kiến trả sách:</Form.Label>
               <Form.Control
+                className="fs-14"
                 type="date"
                 required
-                onChange={(e) => setReturnDate(e.target.value)}
+                onChange={(e) => checkReturnDate(e)}
               />
             </Form.Group>
           </Col>
         </Row>
-        <Row>
-          <Badge pill bg="warning" text="dark" className="badge-ship">
-            Lưu ý hãy đến nhận sách đúng với ngày bạn đã chọn.
-          </Badge>
-        </Row>
-        <Button className="mt-3 rounded-pill" type="submit">
+        <Badge bg="warning" size="md">
+          Lưu ý hãy đến nhận sách đúng với ngày bạn đã chọn.
+        </Badge>
+        <Row></Row>
+        <Button className="mt-3 rounded-pill text-white fs-16" type="submit">
           Mượn sách ngay
         </Button>
       </Form>
+      {/* Toast */}
+      {showToast && (
+        <ToastMessage
+          bg="info"
+          title="Chọn sai ngày"
+          body={`Bạn không thể chọn ngày nhỏ hơn hoặc bằng ngày hiện tại`}
+          autohide={false}
+        />
+      )}
     </Col>
   );
 }

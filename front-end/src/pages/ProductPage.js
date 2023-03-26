@@ -123,7 +123,7 @@ function ProductPage() {
                 <ButtonGroup>
                   <Button
                     variant="danger"
-                    className="fs-16 text-white-custom"
+                    className="fs-16 text-white-custom mx-3"
                     size="md"
                     disabled
                   >
@@ -159,9 +159,10 @@ function ProductPage() {
             )}
             {isSuccess && (
               <ToastMessage
-                bg="secondary"
+                bg="info"
                 title="Đã thêm vào cặp"
                 body={`${product.name} đã được thêm vào cặp sách của bạn`}
+                autohide={true}
               />
             )}
           </Col>

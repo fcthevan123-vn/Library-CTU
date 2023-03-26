@@ -21,3 +21,24 @@
   transform: scale(1.2);
   opacity: 0.7;
 }
+
+.cartPage-wrapper {
+  padding-top: 88px;
+  background-color: var(--background-color);
+}
+
+.table-container > .nav-tabs .nav-link.active {
+  background-color: var(--background-color) !important;
+}
+.table-container {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 10px;
+  padding: 10px 10px;
+  background-color: var(--group-box-color);
+  min-height: 300px;
+}
+
+.cart-table {
+  box-shadow: 0 0 0 2px var(--primary-color), 8px 8px 0 0 var(--primary-color);
+  border-radius: 10px;
+}

@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useCreateOrderMutation } from "../services/appApi";
 import "./CheckOutForm.css";
+import ToastMessage from "../components/ToastMessage";
+
 function CheckoutForm() {
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
@@ -13,6 +15,17 @@ function CheckoutForm() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [returnDate, setReturnDate] = useState("");
+  const [showToast, setShowToast] = useState(false);
+  const currentDate = new Date();
+  function checkDate(e) {
+    const selectedDate = new Date(e.target.value);
+    if (selectedDate <= currentDate) {
+      setShowToast(true);
+    } else {
+      setReturnDate(e.target.value);
+      setShowToast(false);
+    }
+  }
 
   function handlePay(e) {
     e.preventDefault();
@@ -25,9 +38,7 @@ function CheckoutForm() {
       ship: true,
     }).then(({ data }) => {
       console.log(data);
-      setTimeout(() => {
-        // navigate("/orders");
-      }, 1000);
+      navigate("/orders");
     });
   }
 
@@ -38,8 +49,9 @@ function CheckoutForm() {
           {alertMessage && <Alert>{alertMessage}</Alert>}
           <Col md={6}>
             <Form.Group className="mb-3">
-              <Form.Label>Họ và tên - MSSV</Form.Label>
+              <Form.Label className="fs-16">Họ và tên - MSSV:</Form.Label>
               <Form.Control
+                className="fs-14"
                 type="text"
                 placeholder="First Name"
                 value={`${user.name} - ${user.studentID}`}
@@ -49,8 +61,9 @@ function CheckoutForm() {
           </Col>
           <Col md={6}>
             <Form.Group className="mb-3">
-              <Form.Label>Email</Form.Label>
+              <Form.Label className="fs-16">Email: </Form.Label>
               <Form.Control
+                className="fs-14"
                 type="text"
                 placeholder="Email"
                 value={user.email}
@@ -62,8 +75,9 @@ function CheckoutForm() {
         <Row>
           <Col md={6}>
             <Form.Group className="mb-3">
-              <Form.Label>Số điện thoại</Form.Label>
+              <Form.Label className="fs-16">Số điện thoại: </Form.Label>
               <Form.Control
+                className="fs-14"
                 type="text"
                 placeholder="Nhập số điện thoại"
                 value={phone}
@@ -74,19 +88,22 @@ function CheckoutForm() {
           </Col>
           <Col md={6}>
             <Form.Group className="mb-3">
-              <Form.Label>Ngày dự kiến trả sách</Form.Label>
+              <Form.Label className="fs-16">Ngày dự kiến trả sách:</Form.Label>
               <Form.Control
+                className="fs-14"
                 type="date"
                 required
-                onChange={(e) => setReturnDate(e.target.value)}
+                // onChange={(e) => setReturnDate(e.target.value)}
+                onChange={(e) => checkDate(e)}
               />
             </Form.Group>
           </Col>
         </Row>
         <Row>
           <Form.Group className="mb-3">
-            <Form.Label>Địa chỉ</Form.Label>
+            <Form.Label className="fs-16">Địa chỉ:</Form.Label>
             <Form.Control
+              className="fs-14"
               type="text"
               placeholder="Nhập địa chỉ"
               value={address}
@@ -95,15 +112,31 @@ function CheckoutForm() {
             />
           </Form.Group>
         </Row>
-        <Row>
-          <Badge pill bg="warning" text="dark" className="badge-ship">
-            Bạn sẽ phải trả 20.000VND cho phí vận chuyển.
-          </Badge>
-        </Row>
-        <Button className="mt-3 rounded-pill" type="submit">
+        <Badge size="md" bg="warning">
+          Bạn sẽ phải trả 20.000VND cho phí vận chuyển.
+        </Badge>
+        <Row></Row>
+        <Button className="mt-3 fs-16 text-white rounded-pill" type="submit">
           Mượn sách ngay
         </Button>
       </Form>
+      {/* Toast */}
+      {showToast && (
+        <ToastMessage
+          bg="info"
+          title="Chọn sai ngày"
+          body={`Bạn không thể chọn ngày nhỏ hơn hoặc bằng ngày hiện tại`}
+          autohide={false}
+        />
+      )}
+      {isSuccess && (
+        <ToastMessage
+          bg="info"
+          title="Mượn sách thành công"
+          body={`Bạn đã mượn sách thành công, hãy chú ý điện thoại chúng tôi sẽ giao sách vào khoảng 2 ngày nữa`}
+          autohide={false}
+        />
+      )}
     </Col>
   );
 }

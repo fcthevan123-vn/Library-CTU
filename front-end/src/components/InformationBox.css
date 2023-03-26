@@ -1,0 +1,9 @@
+.card-info {
+  margin-top: 68px;
+  border-radius: 8px !important;
+  border: 2px solid var(--primary-color) !important;
+  box-shadow: rgba(235, 176, 45, 0.4) 5px 5px, rgba(235, 176, 45, 0.3) 10px 10px,
+    rgba(235, 176, 45, 0.2) 15px 15px, rgba(235, 176, 45, 0.1) 20px 20px,
+    rgba(235, 176, 45, 0.05) 25px 25px;
+  background-color: var(--group-box-color) !important;
+}

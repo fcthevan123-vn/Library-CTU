@@ -1,0 +1,11 @@
+.orderPage-wrapper {
+  background-color: var(--background-color);
+  height: 100vh;
+  padding-top: 78px;
+}
+
+.table-wrapper {
+  box-shadow: 0 0 0 2px var(--primary-color), 8px 8px 0 0 var(--primary-color);
+  border-radius: 10px;
+  background-color: var(--group-box-color);
+}

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Toast, ToastContainer } from "react-bootstrap";
 import "./ToastMessage.css";
 
-function ToastMessage({ bg, title, body, space }) {
+function ToastMessage({ bg, title, body, space, autohide }) {
   const [show, setShow] = useState(true);
   return (
     <ToastContainer
@@ -14,7 +14,7 @@ function ToastMessage({ bg, title, body, space }) {
         onClose={() => setShow(false)}
         show={show}
         delay={3000}
-        autohide
+        autohide={autohide}
       >
         <Toast.Header className="bg-primary text-white-custom">
           <strong className="me-auto ">{title}</strong>

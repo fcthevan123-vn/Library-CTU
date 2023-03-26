@@ -5,7 +5,12 @@ import CheckoutForm from "./CheckoutForm";
 import TakeBookDirect from "./TakeBookDirect";
 function TableCheckOut() {
   return (
-    <Tabs defaultActiveKey="home" id="fill-tab-example" className="mb-3" fill>
+    <Tabs
+      defaultActiveKey="home"
+      id="fill-tab-example"
+      className="mb-3 fs-16"
+      fill
+    >
       <Tab eventKey="home" title="Giao sách">
         <CheckoutForm></CheckoutForm>
       </Tab>

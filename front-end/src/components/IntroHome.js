@@ -30,7 +30,7 @@ function IntroHome() {
               <LinkContainer to="/all-book">
                 <button
                   type="button"
-                  className="btn btn-primary btn-lg px-4 gap-3 fs-18"
+                  className="btn btn-primary btn-lg px-4 gap-3 fs-18 text-white"
                 >
                   Mượn sách ngay
                 </button>
@@ -39,7 +39,7 @@ function IntroHome() {
               <LinkContainer to="/login">
                 <button
                   type="button"
-                  className="btn btn-primary btn-lg px-4 gap-3 fs-18"
+                  className="btn btn-primary btn-lg px-4 gap-3 fs-18 text-white"
                 >
                   Mượn sách ngay
                 </button>

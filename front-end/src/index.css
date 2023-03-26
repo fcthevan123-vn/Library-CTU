@@ -4,6 +4,8 @@
   --background-color: #fef4d8;
   --group-box-color: #fbf5e3;
   --warning-color: #3d8361;
+  --input-color: #ffffe8;
+  --input-disabled: #e6e6cb;
   /* #fbf5e3 */
 }
 
@@ -48,4 +50,13 @@ code {
 
 .text-white-custom {
   color: #fff !important;
+}
+
+.form-control {
+  background-color: var(--input-color) !important;
+}
+
+.form-control:disabled {
+  background-color: var(--input-disabled) !important;
+  color: #5e5e5e !important;
 }
