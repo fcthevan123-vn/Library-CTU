@@ -34,7 +34,7 @@ function ClientsAdminPage() {
           <th>MSSV</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="fs-14">
         {users.map((user) => (
           <tr>
             <td>{user._id}</td>

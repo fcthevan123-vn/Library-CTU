@@ -45,18 +45,14 @@ function IntroHome() {
                 </button>
               </LinkContainer>
             )}
-            <button
-              type="button"
-              className="btn btn-outline-secondary btn-lg px-4"
-            >
-              <a
-                href="https://lrc.ctu.edu.vn/index.php/aboutus/intro"
-                target="_blank"
-                className="link-to-ctu text-secondary fs-18"
+            <LinkContainer to="/intro">
+              <button
+                type="button"
+                className="btn btn-outline-secondary btn-lg px-4 fs-18 "
               >
                 Xem thông tin về chúng tôi
-              </a>
-            </button>
+              </button>
+            </LinkContainer>
           </div>
         </div>
       </div>

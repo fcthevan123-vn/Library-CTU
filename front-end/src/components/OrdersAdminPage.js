@@ -85,7 +85,7 @@ function OrdersAdminPage() {
         <td>{newReturnDate}</td>
         <td>
           {address ? (
-            <Badge bg="info">{address}</Badge>
+            <Badge bg="secondary">{address}</Badge>
           ) : (
             <Badge bg="warning">Nhận trực tiếp tại thư viện</Badge>
           )}
@@ -93,11 +93,19 @@ function OrdersAdminPage() {
         <td>
           {status === "Đang xử lý" ? (
             address ? (
-              <Button size="sm" onClick={() => markShipped(_id, owner?._id)}>
+              <Button
+                size="sm"
+                className="fs-14 text-white"
+                onClick={() => markShipped(_id, owner?._id)}
+              >
                 Đánh dấu đã được gửi
               </Button>
             ) : (
-              <Button size="sm" onClick={() => markShipped(_id, owner?._id)}>
+              <Button
+                size="sm"
+                className="fs-14 text-white"
+                onClick={() => markShipped(_id, owner?._id)}
+              >
                 Đánh dấu đã nhận sách
               </Button>
             )
@@ -109,8 +117,9 @@ function OrdersAdminPage() {
         </td>
         <td>
           <span
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", fontSize: "13px" }}
             onClick={() => showOrder(products)}
+            className="badge bg-primary"
           >
             Xem chi tiết <UilEye></UilEye>
           </span>
@@ -133,7 +142,7 @@ function OrdersAdminPage() {
             <th>Xác nhận</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="fs-14">
           <Pagination
             data={orders}
             RenderComponent={TableRow}
@@ -144,7 +153,7 @@ function OrdersAdminPage() {
         </tbody>
       </Table>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} className="pt-5">
         <Modal.Header closeButton>
           <Modal.Title>Chi tiết mượn sách:</Modal.Title>
         </Modal.Header>

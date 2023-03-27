@@ -20,7 +20,7 @@ function DashboardProducts() {
   //  Row
   function TableRow({ pictures, _id, name, author, quantity }) {
     return (
-      <tr>
+      <tr className="fs-14">
         <td>
           <img src={pictures[0].url} className="dashboard-product-preview" />
         </td>
@@ -31,6 +31,7 @@ function DashboardProducts() {
         <td>
           <div className="edit-wrapper d-flex flex-column justify-content-center ">
             <Button
+              className="fs-14"
               size="sm"
               variant="danger"
               onClick={() => handleDeleteProduct(_id, user._id)}
@@ -42,7 +43,7 @@ function DashboardProducts() {
             <Link
               to={`/product/${_id}/edit`}
               a
-              className="btn btn-sm btn-warning mt-2"
+              className="btn btn-sm btn-primary mt-2 fs-14"
             >
               Chỉnh sửa sách
             </Link>
@@ -54,7 +55,7 @@ function DashboardProducts() {
 
   return (
     <Table striped bordered hover responsive>
-      <thead>
+      <thead className="fs-16">
         <tr>
           <th>Sách</th>
           <th>ID sách</th>

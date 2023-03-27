@@ -44,7 +44,7 @@ export default function Pagination({
           <RenderComponent key={idx} {...data} />
         ))
       ) : (
-        <div className="dataContainer d-flex justify-content-center flex-wrap">
+        <div className="dataContainer d-flex justify-content-center flex-wrap ">
           <h1>{title}</h1>
 
           {getPaginatedData().map((data, idx) => (

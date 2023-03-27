@@ -1,0 +1,47 @@
+.card-total-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 300px;
+  padding: 0 10px;
+  height: 100px;
+  background-color: #faab78;
+  border-radius: 10px;
+}
+
+.col-total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+.total-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.img-total {
+  margin-right: 20px;
+  height: 80px;
+  width: 40%;
+  border-radius: 10px;
+  background-color: var(--group-box-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.info-total {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: self-start;
+  flex-direction: column;
+}
+
+.info-total > p {
+  margin: 0;
+}

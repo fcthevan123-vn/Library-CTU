@@ -4,6 +4,7 @@
   --background-color: #fef4d8;
   --group-box-color: #fbf5e3;
   --warning-color: #3d8361;
+  --success-color: #7fe9de;
   --input-color: #ffffe8;
   --input-disabled: #e6e6cb;
   /* #fbf5e3 */
@@ -59,4 +60,11 @@ code {
 .form-control:disabled {
   background-color: var(--input-disabled) !important;
   color: #5e5e5e !important;
+}
+
+.title {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 10px;
+  padding: 5px 0;
+  background-color: var(--secondary-color);
 }

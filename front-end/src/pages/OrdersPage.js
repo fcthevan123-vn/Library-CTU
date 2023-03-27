@@ -94,6 +94,7 @@ function OrdersPage() {
                 name={user.name}
                 email={user.email}
                 studentID={user.studentID}
+                orders={orders}
               ></InformationBox>
             </Col>
             <Col md={9}>

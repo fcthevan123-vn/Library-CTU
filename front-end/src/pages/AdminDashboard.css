@@ -1,0 +1,20 @@
+.adminDashboard-wrapper {
+  padding-top: 68px;
+  padding-bottom: 50px;
+  background-color: var(--background-color);
+  min-height: 100vh;
+}
+
+.col-content-dashboard {
+  box-shadow: 0 0 0 2px var(--primary-color), 8px 8px 0 0 var(--primary-color);
+  border-radius: 10px;
+  background-color: var(--group-box-color);
+  height: 100%;
+}
+
+.col-action-dashboard {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  border-radius: 10px;
+
+  background-color: var(--group-box-color);
+}

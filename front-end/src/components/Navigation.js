@@ -72,6 +72,11 @@ function Navigation() {
                   Thư viện sách
                 </Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/intro" className="btn-hover">
+                <Nav.Link className="fs-14 text-white-custom">
+                  Giới thiệu
+                </Nav.Link>
+              </LinkContainer>
             </Col>
             <Col md={6} className=""></Col>
             <Col
