@@ -2,6 +2,8 @@ import React from "react";
 import Footer from "../components/Footer";
 import "./Intro.css";
 export default function Intro() {
+  localStorage.removeItem("toastShowed");
+
   return (
     <div className="intro-wrapper">
       <div className="container intro-container">

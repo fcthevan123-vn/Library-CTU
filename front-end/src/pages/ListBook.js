@@ -8,6 +8,8 @@ import ListCategory from "../components/ListCategory";
 import "./ListBook.css";
 import { UilSearch } from "@iconscout/react-unicons";
 import Footer from "../components/Footer";
+import Pagination from "../components/Pagination";
+
 function ListBook() {
   const [key, setKey] = useState("all book");
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,7 +19,20 @@ function ListBook() {
   const productsSearch = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-  console.log(productsSearch);
+  localStorage.removeItem("toastShowed");
+
+  function rowPage({ _id, category, name, pictures, author }) {
+    return (
+      <ProductPreview
+        _id={_id}
+        category={category}
+        name={name}
+        pictures={pictures}
+        author={author}
+      />
+    );
+  }
+
   return (
     <div>
       <div className="listbook-wrapper">
@@ -45,8 +60,19 @@ function ListBook() {
               className="mb-3"
             >
               <Tab eventKey="all book" title="Tất cả sách" className="fs-16">
-                <div className="d-flex justify-content-center flex-wrap">
+                <div className="d-flex justify-content-center flex-wrap book-rendered-wrapper">
                   {productsSearch.length > 0 ? (
+                    <Pagination
+                      data={productsSearch}
+                      RenderComponent={rowPage}
+                      pageLimit={1}
+                      dataLimit={8}
+                    ></Pagination>
+                  ) : (
+                    <h4>Không có sách nào có chứa "{searchTerm}"</h4>
+                  )}
+
+                  {/* {productsSearch.length > 0 ? (
                     productsSearch.map((product) =>
                       product.quantity > 0 ? (
                         <ProductPreview {...product} />
@@ -56,7 +82,7 @@ function ListBook() {
                     )
                   ) : (
                     <h4>Không có sách nào có chứa "{searchTerm}"</h4>
-                  )}
+                  )} */}
                 </div>
               </Tab>
               <Tab eventKey="category" title="Danh mục sách">

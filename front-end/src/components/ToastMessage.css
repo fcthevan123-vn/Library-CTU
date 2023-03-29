@@ -1,5 +1,5 @@
 .toast-container {
-  position: absolute;
+  position: fixed !important;
   top: 8%;
   right: 1%;
 }

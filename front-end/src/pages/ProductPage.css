@@ -54,6 +54,23 @@
   opacity: 1;
 }
 
+.description-product {
+  max-height: 170px;
+  overflow-y: scroll;
+  padding-right: 10px;
+}
+
+.description-product::-webkit-scrollbar {
+  border-radius: 20px;
+  width: 7px;
+  background-color: #ffd8a9;
+}
+
+.description-product::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-color: #f1a661;
+}
+
 /* .product-description {
   width: 100%;
   overflow-x: visible;

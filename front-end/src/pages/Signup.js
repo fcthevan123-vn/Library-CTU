@@ -11,6 +11,8 @@ function Signup() {
 
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+
+  // error, isLoading, isError là các biến được tạo ra bởi reactToolkit
   const [signup, { error, isLoading, isError }] = useSignupMutation();
 
   function handleSignup(e) {
@@ -30,7 +32,11 @@ function Signup() {
                 className="form-wrapper"
               >
                 <h4 className="fs-22">Đăng ký tài khoản ngay</h4>
-                {isError && <Alert variant="danger">{error.data}</Alert>}
+                {isError && (
+                  <Alert variant="danger" className="fs-16">
+                    {error.data}
+                  </Alert>
+                )}
                 <Form.Group>
                   <Form.Label className="d-flex fs-16">Họ và tên: </Form.Label>
                   <Form.Control

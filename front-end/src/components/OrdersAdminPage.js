@@ -18,7 +18,12 @@ function OrdersAdminPage() {
   function markShipped(orderId, ownerId) {
     axios
       .patch(`/orders/${orderId}/mark-shipped`, { ownerId })
-      .then(({ data }) => setOrders(data))
+      .then(({ data }) => {
+        const dataClone = data;
+        setLoading(false);
+        const sortedData = dataClone.reverse();
+        setOrders(sortedData);
+      })
       .catch((e) => console.log(e));
   }
 
@@ -39,13 +44,17 @@ function OrdersAdminPage() {
     axios
       .get("/orders")
       .then(({ data }) => {
+        const dataClone = data;
         setLoading(false);
-        setOrders(data);
+        const sortedData = dataClone.reverse();
+        setOrders(sortedData);
       })
       .catch((e) => {
         setLoading(false);
       });
   }, []);
+
+  console.log(orders[0]);
 
   if (loading) {
     return <Loading />;
@@ -94,16 +103,18 @@ function OrdersAdminPage() {
           {status === "Đang xử lý" ? (
             address ? (
               <Button
+                style={{ fontSize: "13px" }}
                 size="sm"
-                className="fs-14 text-white"
+                className=" text-white"
                 onClick={() => markShipped(_id, owner?._id)}
               >
                 Đánh dấu đã được gửi
               </Button>
             ) : (
               <Button
+                style={{ fontSize: "13px" }}
                 size="sm"
-                className="fs-14 text-white"
+                className="text-white"
                 onClick={() => markShipped(_id, owner?._id)}
               >
                 Đánh dấu đã nhận sách
@@ -119,7 +130,7 @@ function OrdersAdminPage() {
           <span
             style={{ cursor: "pointer", fontSize: "13px" }}
             onClick={() => showOrder(products)}
-            className="badge bg-primary"
+            className="bg-primary rounded p-1 px-2 text-white"
           >
             Xem chi tiết <UilEye></UilEye>
           </span>
@@ -147,7 +158,7 @@ function OrdersAdminPage() {
             data={orders}
             RenderComponent={TableRow}
             pageLimit={1}
-            dataLimit={10}
+            dataLimit={11}
             tablePagination={true}
           />
         </tbody>

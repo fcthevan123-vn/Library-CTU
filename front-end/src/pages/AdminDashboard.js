@@ -7,6 +7,8 @@ import OrdersAdminPage from "../components/OrdersAdminPage";
 import TotalAdmin from "../components/TotalAdmin";
 import "./AdminDashboard.css";
 function AdminDashboard() {
+  localStorage.removeItem("toastShowed");
+
   return (
     <div>
       <div className="adminDashboard-wrapper">

@@ -12,9 +12,7 @@ function Login() {
   function handleLogin(e) {
     e.preventDefault();
     login({ email, password });
-    setTimeout(() => {
-      navigate("/");
-    }, 1000);
+    localStorage.setItem("toastShowed", true);
   }
   return (
     <div>

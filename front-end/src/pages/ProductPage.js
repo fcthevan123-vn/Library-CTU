@@ -84,7 +84,10 @@ function ProductPage() {
             <p className="product__price fs-14 text-description">
               <strong className="fs-16">Tác giả: </strong> {product.author}
             </p>
-            <p style={{ textAlign: "justify" }} className="py-2 fs-14">
+            <p
+              style={{ textAlign: "justify" }}
+              className="py-2 fs-14 description-product"
+            >
               <strong className="fs-16">Tóm tắt về sách: </strong>{" "}
               {product.description}
             </p>

@@ -16,7 +16,8 @@ function CartPage() {
   const userCartObj = user.cart;
   let cart = products.filter((product) => userCartObj[product._id] != null);
   const [removeFromCart, { isLoading }] = useRemoveFromCartMutation();
-  Object.keys(userCartObj).map((product) => console.log(product));
+  localStorage.removeItem("toastShowed");
+
   return (
     <div className="cartPage-wrapper">
       <Container

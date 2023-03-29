@@ -5,6 +5,7 @@ import { useCreateProductMutation } from "../services/appApi";
 import axios from "../axios";
 import "./NewProduct.css";
 import Footer from "../components/Footer";
+import ToastMessage from "../components/ToastMessage";
 
 function NewProduct() {
   const [name, setName] = useState("");
@@ -19,6 +20,7 @@ function NewProduct() {
   const navigate = useNavigate();
   const [createProduct, { isError, error, isLoading, isSuccess }] =
     useCreateProductMutation();
+  localStorage.removeItem("toastShowed");
 
   function handleRemoveImg(imgObj) {
     setImgToRemove(imgObj.public_id);
@@ -61,7 +63,7 @@ function NewProduct() {
       if (data.length > 0) {
         setTimeout(() => {
           navigate("/");
-        }, 1500);
+        }, 2000);
       }
     });
   }
@@ -92,7 +94,15 @@ function NewProduct() {
             <Col md={6} className="new-product__form--container">
               <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
                 <h1 className="mt-4 fs-30">Thêm sách mới ngay</h1>
-                {isSuccess && <Alert variant="success">Tạo thành công</Alert>}
+                {isSuccess && (
+                  <ToastMessage
+                    bg="info"
+                    title="Thêm sách mới thành công"
+                    body={`Sách đã được thêm vào thư viện`}
+                    autohide={true}
+                  />
+                )}
+
                 {isError && <Alert variant="danger">{error.data}</Alert>}
                 <Form.Group className="mb-3">
                   <Form.Label className="float-start fs-16">

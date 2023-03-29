@@ -32,7 +32,9 @@ function OrdersPage() {
         .get(`/users/${user._id}/orders`)
         .then(({ data }) => {
           setLoading(false);
-          setOrders(data);
+          const dataClone = data;
+          const dataShorted = dataClone.reverse();
+          setOrders(dataShorted);
         })
         .catch((e) => {
           setLoading(false);
@@ -41,6 +43,8 @@ function OrdersPage() {
     }
     getData();
   }, []);
+
+  localStorage.removeItem("toastShowed");
 
   // format date
   function formatDate(date) {

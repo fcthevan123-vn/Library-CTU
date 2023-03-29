@@ -64,7 +64,7 @@ function TotalAdmin() {
               <div className="img-total">
                 <i class="fa-solid fa-book fa-beat"></i>
               </div>
-              <div className="info-total">
+              <div className="info-total text-white">
                 <p className="fs-16 ">
                   <strong>{products.length}</strong>
                 </p>
@@ -77,11 +77,11 @@ function TotalAdmin() {
               <div className="img-total">
                 <i class="fa-solid fa-arrow-up-from-bracket fa-beat"></i>
               </div>
-              <div className="info-total">
+              <div className="info-total text-white">
                 <p className="fs-16 ">
                   <strong>{orders.length}</strong>
                 </p>
-                <p className="fs-14 ">Lượt thuê sách</p>
+                <p className="fs-14 ">Lượt mượn sách</p>
               </div>
             </div>
           </div>
@@ -90,7 +90,7 @@ function TotalAdmin() {
               <div className="img-total">
                 <i class="fa-solid fa-users fa-beat"></i>
               </div>
-              <div className="info-total">
+              <div className="info-total text-white">
                 <p className="fs-16 ">
                   <strong>{users.length}</strong>
                 </p>
@@ -105,7 +105,7 @@ function TotalAdmin() {
               <div className="img-total">
                 <i class="fa-solid fa-book-bookmark fa-beat"></i>
               </div>
-              <div className="info-total">
+              <div className="info-total text-white">
                 <p className="fs-16 ">
                   <strong>{totalBookOrdered}</strong>
                 </p>
@@ -116,26 +116,13 @@ function TotalAdmin() {
           <div className="col-4 col-total">
             <div className="card-total-wrapper">
               <div className="img-total">
-                <i class="fa-solid fa-arrow-up-from-bracket fa-beat"></i>
+                <i class="fa-solid fa-calendar-days fa-beat"></i>
               </div>
-              <div className="info-total">
+              <div className="info-total text-white">
                 <p className="fs-16 ">
                   <strong>{totalOrderedInday}</strong>
                 </p>
-                <p className="fs-14 ">Lượt thuê sách trong ngày</p>
-              </div>
-            </div>
-          </div>
-          <div className="col-4 col-total">
-            <div className="card-total-wrapper">
-              <div className="img-total">
-                <i class="fa-solid fa-users fa-beat"></i>
-              </div>
-              <div className="info-total">
-                <p className="fs-16 ">
-                  <strong>{users.length}</strong>
-                </p>
-                <p className="fs-14 ">Người dùng đã đăng ký</p>
+                <p className="fs-14 ">Lượt mượn sách trong ngày</p>
               </div>
             </div>
           </div>

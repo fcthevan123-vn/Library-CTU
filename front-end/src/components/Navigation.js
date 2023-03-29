@@ -25,9 +25,8 @@ function Navigation() {
   const navigate = useNavigate();
   function handleLogout() {
     dispatch(logout());
-    setTimeout(() => {
-      navigate("/login");
-    });
+    localStorage.setItem("toastShowed", false);
+    navigate("/login");
   }
 
   return (

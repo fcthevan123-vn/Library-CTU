@@ -2,8 +2,8 @@ const router = require("express").Router();
 const Order = require("../models/Order");
 const User = require("../models/User");
 const Product = require("../models/Product");
-//creating an order
 
+//creating an order
 router.post("/", async (req, res) => {
   const { userId, cart, phone, address } = req.body;
   const { returnDate, takeBookDate, ship } = req.body;
@@ -60,7 +60,11 @@ router.patch("/:id/mark-shipped", async (req, res) => {
   try {
     const user = await User.findById(ownerId);
     await Order.findByIdAndUpdate(id, { status: "Sách đã được gửi đi" });
-    const orders = await Order.find().populate("owner", ["email", "name"]);
+    const orders = await Order.find().populate("owner", [
+      "email",
+      "name",
+      "studentID",
+    ]);
     await user.save();
     res.status(200).json(orders);
   } catch (e) {

@@ -5,6 +5,7 @@ import { useUpdateProductMutation } from "../services/appApi";
 import axios from "../axios";
 import "./NewProduct.css";
 import Footer from "../components/Footer";
+import ToastMessage from "../components/ToastMessage";
 
 function EditProductPage() {
   const { id } = useParams();
@@ -79,7 +80,7 @@ function EditProductPage() {
       if (data.length > 0) {
         setTimeout(() => {
           navigate("/");
-        }, 1500);
+        }, 2000);
       }
     });
   }
@@ -110,7 +111,12 @@ function EditProductPage() {
             <Form style={{ width: "100%" }} onSubmit={handleSubmit}>
               <h3 className="mt-4 fs-30">Sửa thông tin về sách</h3>
               {isSuccess && (
-                <Alert variant="success">Cập nhật thành công</Alert>
+                <ToastMessage
+                  bg="info"
+                  title="Chỉnh sửa sách thành công"
+                  body={`Sách đã được chỉnh sửa ở thư viện`}
+                  autohide={true}
+                />
               )}
               {isError && <Alert variant="danger">{error.data}</Alert>}
               <Form.Group className="mb-3">

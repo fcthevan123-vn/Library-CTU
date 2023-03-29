@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const mongoose = require("mongoose");
-
+// connect to Mongo
 const connectionStr = `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PW}@cluster0.inmk4v4.mongodb.net/ecomern?retryWrites=true&w=majority`;
 mongoose.set("strictQuery", false);
 mongoose
