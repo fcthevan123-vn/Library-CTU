@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import ReactDOMServer from "react-dom/server";
+
 import { Button, Col, Container, Form, Row, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../services/appApi";
 import Footer from "../components/Footer";
+import ToastMessage from "../components/ToastMessage";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,9 +17,10 @@ function Login() {
     login({ email, password });
     localStorage.setItem("toastShowed", true);
   }
+
   return (
     <div>
-      <div className="login-container">
+      <div className="login-container" id="login-container">
         <Container className="">
           <Row>
             <Col md={6} className="login__form--container">

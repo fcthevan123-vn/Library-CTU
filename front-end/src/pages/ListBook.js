@@ -62,12 +62,18 @@ function ListBook() {
               <Tab eventKey="all book" title="Tất cả sách" className="fs-16">
                 <div className="d-flex justify-content-center flex-wrap book-rendered-wrapper">
                   {productsSearch.length > 0 ? (
-                    <Pagination
-                      data={productsSearch}
-                      RenderComponent={rowPage}
-                      pageLimit={1}
-                      dataLimit={8}
-                    ></Pagination>
+                    searchTerm.length > 0 ? (
+                      productsSearch.map((product) => (
+                        <ProductPreview {...product} />
+                      ))
+                    ) : (
+                      <Pagination
+                        data={productsSearch}
+                        RenderComponent={rowPage}
+                        pageLimit={1}
+                        dataLimit={8}
+                      ></Pagination>
+                    )
                   ) : (
                     <h4>Không có sách nào có chứa "{searchTerm}"</h4>
                   )}
