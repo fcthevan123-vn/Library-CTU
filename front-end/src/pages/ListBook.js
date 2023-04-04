@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import ProductPreview from "../components/ProductPreview";
@@ -60,12 +60,14 @@ function ListBook() {
               className="mb-3"
             >
               <Tab eventKey="all book" title="Tất cả sách" className="fs-16">
-                <div className="d-flex justify-content-center flex-wrap book-rendered-wrapper">
+                <div className=" book-rendered-wrapper">
                   {productsSearch.length > 0 ? (
                     searchTerm.length > 0 ? (
-                      productsSearch.map((product) => (
-                        <ProductPreview {...product} />
-                      ))
+                      <div className="d-flex justify-content-center align-items-center">
+                        {productsSearch.map((product) => (
+                          <ProductPreview {...product} />
+                        ))}{" "}
+                      </div>
                     ) : (
                       <Pagination
                         data={productsSearch}

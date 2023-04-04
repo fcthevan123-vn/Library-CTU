@@ -25,7 +25,7 @@ function Home() {
         <Features></Features>
       </div>
       {/* toast */}
-      {showToast && (
+      {user && showToast && (
         <ToastMessage
           bg="info"
           title="Đăng nhập thành công"

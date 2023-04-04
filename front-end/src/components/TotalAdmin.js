@@ -62,7 +62,7 @@ function TotalAdmin() {
           <div className="col-4 col-total">
             <div className="card-total-wrapper">
               <div className="img-total">
-                <i class="fa-solid fa-book fa-beat"></i>
+                <i class="fa-solid fa-book fa-beat text-white"></i>
               </div>
               <div className="info-total text-white">
                 <p className="fs-16 ">
@@ -75,7 +75,7 @@ function TotalAdmin() {
           <div className="col-4 col-total">
             <div className="card-total-wrapper">
               <div className="img-total">
-                <i class="fa-solid fa-arrow-up-from-bracket fa-beat"></i>
+                <i class="fa-solid fa-arrow-up-from-bracket fa-beat text-white"></i>
               </div>
               <div className="info-total text-white">
                 <p className="fs-16 ">
@@ -88,7 +88,7 @@ function TotalAdmin() {
           <div className="col-4 col-total">
             <div className="card-total-wrapper">
               <div className="img-total">
-                <i class="fa-solid fa-users fa-beat"></i>
+                <i class="fa-solid fa-users fa-beat text-white"></i>
               </div>
               <div className="info-total text-white">
                 <p className="fs-16 ">
@@ -103,7 +103,7 @@ function TotalAdmin() {
           <div className="col-4 col-total">
             <div className="card-total-wrapper">
               <div className="img-total">
-                <i class="fa-solid fa-book-bookmark fa-beat"></i>
+                <i class="fa-solid fa-book-bookmark fa-beat text-white"></i>
               </div>
               <div className="info-total text-white">
                 <p className="fs-16 ">
@@ -116,7 +116,7 @@ function TotalAdmin() {
           <div className="col-4 col-total">
             <div className="card-total-wrapper">
               <div className="img-total">
-                <i class="fa-solid fa-calendar-days fa-beat"></i>
+                <i class="fa-solid fa-calendar-days fa-beat text-white"></i>
               </div>
               <div className="info-total text-white">
                 <p className="fs-16 ">

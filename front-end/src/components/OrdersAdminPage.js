@@ -54,8 +54,6 @@ function OrdersAdminPage() {
       });
   }, []);
 
-  console.log(orders[0]);
-
   if (loading) {
     return <Loading />;
   }
@@ -166,23 +164,37 @@ function OrdersAdminPage() {
 
       <Modal show={show} onHide={handleClose} className="pt-5">
         <Modal.Header closeButton>
-          <Modal.Title>Chi tiết mượn sách:</Modal.Title>
+          <Modal.Title className="fs-18">Chi tiết mượn sách:</Modal.Title>
         </Modal.Header>
         {orderToShow.map((order) => (
           <div>
-            <div className="order-details__container d-flex justify-content-around py-2">
+            <div className="order-details__container d-flex justify-content-around  py-2">
               <img
+                className="rounded shadow"
                 src={order.pictures[0].url}
-                style={{ maxWidth: 100, height: 100, objectFit: "cover" }}
+                style={{
+                  maxWidth: 100,
+                  height: 100,
+                  objectFit: "cover",
+                }}
+                alt="picture0"
               />
-              <p>{order.name}</p>
-              <p>{order.author}</p>
+              <p style={{ width: "200px" }} className="text-center">
+                {order.name}
+              </p>
+              <p style={{ width: "120px" }} className="text-center">
+                {order.author}
+              </p>
             </div>
             <hr style={{ backgroundColor: "#dee2e6", opacity: "1" }}></hr>
           </div>
         ))}
         <Modal.Footer style={{ borderTop: "0px" }}>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button
+            variant="primary"
+            className="fs-14 text-white"
+            onClick={handleClose}
+          >
             Đóng
           </Button>
         </Modal.Footer>

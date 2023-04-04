@@ -182,6 +182,7 @@ function OrdersPage() {
                               height: 100,
                               objectFit: "cover",
                             }}
+                            alt="picture0"
                           />
                           <p className="fs-14">{order.name}</p>
                           <p className="fs-14">{order.author}</p>

@@ -6,6 +6,7 @@ const User = require("../models/User");
 router.get("/", async (req, res) => {
   try {
     const sort = { _id: -1 };
+    // Sắp xếp product theo thứ tự mới nhất ở đầu tiên
     const products = await Product.find().sort(sort);
     res.status(200).json(products);
   } catch (e) {
@@ -84,13 +85,16 @@ router.delete("/:id", async (req, res) => {
     const user = await User.findById(user_id);
     if (!user.isAdmin) return res.status(401).json("Bạn không phải là admin");
     await Product.findByIdAndDelete(id);
-    const products = await Product.find();
+
+    // Sắp xếp product theo thứ tự mới nhất ở đầu tiên
+    const products = await Product.find().sort({ _id: -1 });
     res.status(200).json(products);
   } catch (e) {
     res.status(400).send(e.message);
   }
 });
 
+// get product by id
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {

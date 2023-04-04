@@ -8,7 +8,7 @@ export default function Intro() {
     <div className="intro-wrapper">
       <div className="container intro-container">
         <div className="row ">
-          <h3 className="fs-22 ">Giới thiệu về thư viện CTU</h3>
+          <h3 className="fs-22 intro-title">Giới thiệu về thư viện CTU</h3>
         </div>
         <div className="row row-intro mt-3">
           <div className="col col-text">

@@ -74,9 +74,7 @@ function CategoryPage() {
           <UilSearch className="search-btn"></UilSearch>
         </div>
       </div>
-      {productsSearch.length === 0 ? (
-        <h3 className="fs-22">Không có sách với tên này</h3>
-      ) : (
+      {productsSearch.length > 0 ? (
         <Container>
           <Row>
             <Col md={{ span: 10, offset: 1 }}>
@@ -90,6 +88,8 @@ function CategoryPage() {
             </Col>
           </Row>
         </Container>
+      ) : (
+        <h3 className="fs-22">Không có sách với tên này</h3>
       )}
     </div>
   );

@@ -3,27 +3,36 @@
   padding-top: 78px;
 }
 
+.intro-title {
+  padding: 10px 0;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  color: var(--primary-color);
+}
+
 .intro-container {
   min-height: 100vh;
 }
 
 .col-text {
-  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-  border-radius: 10px;
-  padding: 10px 10px;
-  background-color: var(--group-box-color); */
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
+.col-text > h4 {
+  color: var(--primary-color);
+}
+
 .img-intro {
   height: 300px;
   width: 100%;
   object-fit: cover;
+  box-shadow: 0 0 0 2px var(--primary-color), 8px 8px 0 0 var(--primary-color);
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  /* border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; */
 }
 
 .col-img-intro {
