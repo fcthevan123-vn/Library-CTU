@@ -3,11 +3,11 @@
   height: 670px;
   width: 100%;
   background-size: cover;
-  border-radius: 14px;
+  /* border-radius: 14px;
   border: 1px solid #f0d612;
   box-shadow: rgba(235, 176, 45, 0.4) 5px 5px, rgba(235, 176, 45, 0.3) 10px 10px,
     rgba(235, 176, 45, 0.2) 15px 15px, rgba(235, 176, 45, 0.1) 20px 20px,
-    rgba(235, 176, 45, 0.05) 25px 25px;
+    rgba(235, 176, 45, 0.05) 25px 25px; */
 }
 
 .signup__form--container,
@@ -20,10 +20,9 @@
 }
 
 .form-wrapper {
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  /* box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px; */
   border-radius: 10px;
   padding: 10px 10px;
-  background-color: var(--group-box-color);
 }
 
 .login__image--container {
@@ -52,6 +51,99 @@
 .login-container::after {
   content: "";
   background-color: rgb(71, 67, 67);
+}
+
+.card-signup {
+  width: 500px;
+  min-height: 500px;
+  transition: all 0.2s;
+  position: relative;
+  cursor: pointer;
+}
+
+.card-signup-inner {
+  width: inherit;
+  height: inherit;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+}
+
+.card-signup:hover {
+  transform: scale(1.04) rotate(1deg);
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(#b0e633, #53ef7d);
+  border-radius: 50%;
+  position: absolute;
+  animation: move-up6 2s ease-in infinite alternate-reverse;
+}
+
+.circle:nth-child(1) {
+  top: -25px;
+  left: -25px;
+}
+
+.circle:nth-child(2) {
+  bottom: -25px;
+  right: -25px;
+  animation-name: move-down1;
+}
+
+@keyframes move-up6 {
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes move-down1 {
+  to {
+    transform: translateY(10px);
+  }
+}
+
+/* Button */
+.btn-signup {
+  padding: 6px 10px;
+  border: unset;
+  border-radius: 15px;
+  color: var(--primary-color);
+  z-index: 1;
+  background: var(--background-color);
+  position: relative;
+  font-weight: 1000;
+  font-size: 17px;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+  overflow: hidden;
+}
+
+.btn-signup::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  border-radius: 15px;
+  background-color: var(--primary-color);
+  z-index: -1;
+  -webkit-box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+  transition: all 250ms;
+}
+
+.btn-signup:hover {
+  color: #ffffff;
+}
+
+.btn-signup:hover::before {
+  width: 100%;
 }
 
 @media screen and (max-width: 756px) {
