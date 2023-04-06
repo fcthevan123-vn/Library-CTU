@@ -44,13 +44,24 @@ router.get("/", async (req, res) => {
   }
 });
 
-// get user orders
+// get all user orders
 
 router.get("/:id/orders", async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findById(id).populate("orders");
     res.json(user.orders);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+});
+
+// get orders by id
+router.get("/:id/edit-cart", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const order = await Order.findById(id);
+    res.json(order);
   } catch (e) {
     res.status(400).send(e.message);
   }

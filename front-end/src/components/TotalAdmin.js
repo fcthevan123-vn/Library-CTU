@@ -3,17 +3,21 @@ import { useSelector } from "react-redux";
 import axios from "../axios";
 
 import "./TotalAdmin.css";
+import Loading from "./Loading";
 function TotalAdmin() {
   const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState([]);
   const products = useSelector((state) => state.products);
+  const [loading, setLoading] = useState(false);
 
   //   get all orders
   useEffect(() => {
+    setLoading(true);
     axios
       .get("/orders")
       .then(({ data }) => {
         setOrders(data);
+        setLoading(false);
       })
       .catch((e) => {
         console.log(e);
@@ -22,10 +26,12 @@ function TotalAdmin() {
 
   //  get all users
   useEffect(() => {
+    setLoading(true);
     axios
       .get("/users")
       .then(({ data }) => {
         setUsers(data);
+        setLoading(false);
       })
       .catch((e) => {
         console.log(e);
@@ -52,9 +58,12 @@ function TotalAdmin() {
       totalBookOrdered += Object.keys(order.products).length;
     });
   }
-
   countInformation();
-  console.log(totalOrderedInday);
+
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
   return (
     <div className="total-wrapper">
       <div className="container total-container">

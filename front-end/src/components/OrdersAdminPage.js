@@ -54,6 +54,8 @@ function OrdersAdminPage() {
       });
   }, []);
 
+  console.log(orders[0]);
+
   if (loading) {
     return <Loading />;
   }

@@ -28,12 +28,16 @@ function IntroHome() {
             {/* check user */}
             {user ? (
               <LinkContainer to="/all-book">
-                <button
+                <button className="button-introHome fs-18">
+                  {" "}
+                  Mượn sách ngay
+                </button>
+                {/* <button
                   type="button"
                   className="btn btn-primary btn-lg px-4 gap-3 fs-18 text-white"
                 >
                   Mượn sách ngay
-                </button>
+                </button> */}
               </LinkContainer>
             ) : (
               <LinkContainer to="/login">
@@ -48,7 +52,7 @@ function IntroHome() {
             <LinkContainer to="/intro">
               <button
                 type="button"
-                className="btn btn-outline-secondary btn-lg px-4 fs-18 "
+                className="btn btn-outline-primary btn-lg px-4 fs-18 "
               >
                 Xem thông tin về chúng tôi
               </button>

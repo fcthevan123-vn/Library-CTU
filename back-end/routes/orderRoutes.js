@@ -71,4 +71,37 @@ router.patch("/:id/mark-shipped", async (req, res) => {
     res.status(400).json(e.message);
   }
 });
+
+//Cancel order
+router.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  const { userId, products } = req.body;
+  try {
+    const user = await User.findById(userId);
+
+    // Tăng số lượng sản phẩm trong giỏ hàng lên 1 (nếu có)
+    await Promise.all(
+      products.map(async (productId) => {
+        const p = await Product.findById(productId);
+        if (p) {
+          p.quantity++;
+          await p.save();
+        }
+      })
+    );
+
+    await Order.findByIdAndDelete(id);
+    await user.save();
+    res.status(200).json(user);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+});
+
+// edit order
+router.patch("/:id/edit", async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+});
+
 module.exports = router;

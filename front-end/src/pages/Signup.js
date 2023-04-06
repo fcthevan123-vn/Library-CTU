@@ -27,9 +27,9 @@ function Signup() {
           <Row>
             <Col md={6} className="signup__form--container">
               <div className="card-signup">
-                <div class="circle"></div>
-                <div class="circle"></div>
-                <div class="card-signup-inner">
+                <div className="circle"></div>
+                <div className="circle"></div>
+                <div className="card-signup-inner">
                   <Form
                     style={{ width: "100%" }}
                     onSubmit={handleSignup}

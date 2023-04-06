@@ -78,6 +78,18 @@ export const appApi = createApi({
         body,
       }),
     }),
+
+    // cancel order
+    cancelOrder: builder.mutation({
+      query: ({ orderId, userId, products }) => ({
+        url: `/orders/${orderId}`,
+        body: {
+          userId,
+          products,
+        },
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -90,6 +102,7 @@ export const {
   useCreateOrderMutation,
   useDeleteProductMutation,
   useUpdateProductMutation,
+  useCancelOrderMutation,
 } = appApi;
 
 export default appApi;

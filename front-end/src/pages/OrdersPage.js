@@ -15,6 +15,10 @@ import { UilRocket, UilHome, UilEye } from "@iconscout/react-unicons";
 import "./OrdersPage.css";
 import Footer from "../components/Footer";
 import InformationBox from "../components/InformationBox";
+import ToastMessage from "../components/ToastMessage";
+import { useCancelOrderMutation } from "../services/appApi";
+import { Navigate } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
 
 function OrdersPage() {
   const user = useSelector((state) => state.user);
@@ -25,8 +29,12 @@ function OrdersPage() {
   const [show, setShow] = useState(false);
   const [orderToShow, setOrderToShow] = useState([]);
   const handleClose = () => setShow(false);
+  const [cancelOrder, { isLoading, isSuccess }] = useCancelOrderMutation();
+  const [showToast, setShowToast] = useState(false);
+
   useEffect(() => {
     setLoading(true);
+    setShowToast(false);
     async function getData() {
       await axios
         .get(`/users/${user._id}/orders`)
@@ -45,7 +53,7 @@ function OrdersPage() {
   }, []);
 
   localStorage.removeItem("toastShowed");
-
+  console.log(orders[0]);
   // format date
   function formatDate(date) {
     const arrDate = date.split("-");
@@ -75,6 +83,18 @@ function OrdersPage() {
         Xem chi tiết <UilEye></UilEye>
       </span>
     );
+  }
+
+  function handleCancelOrder(orderId, products) {
+    // Chuyển object products thành mảng
+    const arrProduct = Object.keys(products).map((key) => key);
+    if (window.confirm("Bạn có chắc chắn muốn huỷ không?")) {
+      cancelOrder({ orderId: orderId, userId: user._id, products: arrProduct });
+      setShowToast(true);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+    }
   }
 
   if (loading) {
@@ -121,6 +141,7 @@ function OrdersPage() {
                       <th>Ngày dự kiến trả</th>
                       <th>Phương thức nhận sách</th>
                       <th>Xem chi tiết</th>
+                      <th>Chỉnh sửa</th>
                     </tr>
                   </thead>
                   <tbody className="fs-14">
@@ -153,7 +174,7 @@ function OrdersPage() {
                               <UilRocket style={{ height: "20px" }}></UilRocket>
                             </Badge>
                           ) : (
-                            <Badge bg="success">
+                            <Badge bg="success ">
                               Nhận trực tiếp{" "}
                               <UilHome style={{ height: "20px" }}></UilHome>
                             </Badge>
@@ -162,11 +183,37 @@ function OrdersPage() {
                         <td>
                           <ViewMore products={order.products}></ViewMore>
                         </td>
+                        <td>
+                          {order.status === "Đang xử lý" ? (
+                            <div>
+                              {/* <LinkContainer to={`/orders/${order._id}/edit`}>
+                                <button className="btn btn-primary fs-14 mb-1">
+                                  Chỉnh sửa
+                                </button>
+                              </LinkContainer> */}
+                              <button className="btn btn-primary fs-14 mb-1">
+                                Chỉnh sửa
+                              </button>
+                              <button
+                                className="btn btn-danger fs-14"
+                                onClick={() =>
+                                  handleCancelOrder(order._id, order.products)
+                                }
+                              >
+                                Huỷ{" "}
+                              </button>
+                            </div>
+                          ) : (
+                            <button className="btn btn-danger fs-14" disabled>
+                              Huỷ
+                            </button>
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
 
-                  <Modal show={show} onHide={handleClose} className="mt-5 ">
+                  <Modal show={show} onHide={handleClose} className="pt-5 ">
                     <Modal.Header closeButton>
                       <Modal.Title className="fs-16">
                         Chi tiết mượn sách:
@@ -207,6 +254,15 @@ function OrdersPage() {
             </Col>
           </Row>
         </Container>
+        {/* Toast */}
+        {showToast && (
+          <ToastMessage
+            bg="info"
+            title="Huỷ mượn sách thành công"
+            body={`Bạn đã huỷ mượn sách`}
+            autohide={true}
+          />
+        )}
       </div>
       <Footer></Footer>
     </div>

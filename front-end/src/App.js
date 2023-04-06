@@ -19,6 +19,7 @@ import { io } from "socket.io-client";
 import { addNotification } from "./features/userSlice";
 import ListBook from "./pages/ListBook";
 import Intro from "./pages/Intro";
+import EditCartPage from "./pages/EditCartPage";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -44,6 +45,7 @@ function App() {
             <>
               <Route path="/cart" element={<CartPage />} />
               <Route path="/orders" element={<OrdersPage />} />
+              <Route path="/orders/:id/edit" element={<EditCartPage />} />
             </>
           )}
           {user && user.isAdmin && (
