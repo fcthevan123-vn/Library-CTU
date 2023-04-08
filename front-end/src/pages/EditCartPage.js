@@ -19,12 +19,18 @@ function EditCartPage() {
   const [orders, setOrders] = useState([]);
   const user = useSelector((state) => state.user);
   const products = useSelector((state) => state.products);
-  const userCartObj = user.cart;
 
-  //chỉ hiển thị các sách có trong giỏ
-  let cart = products.filter((product) => userCartObj[product._id] != null);
   const [removeFromCart, { isLoading }] = useRemoveFromCartMutation();
   localStorage.removeItem("toastShowed");
+
+  let cart = [];
+
+  if (orders.products) {
+    const userCartObj = orders.products;
+
+    // lọc các product chỉ có trong orders
+    cart = products.filter((product) => userCartObj[product._id] != null);
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -43,7 +49,6 @@ function EditCartPage() {
     }
     getData();
   }, [id]);
-  console.log(orders);
 
   return (
     <div className="cartPage-wrapper">
@@ -54,13 +59,13 @@ function EditCartPage() {
       >
         <Row>
           <Col className="table-container me-3">
-            <h1 className="py-4 fs-22 ">Cặp sách của {user.name}</h1>
+            <h1 className="py-4 fs-22 ">Mã mượn sách: {id}</h1>
             {cart.length == 0 ? (
               <Badge bg="warning" className="fs-18">
                 Cặp sách đang trống, hãy thêm sách ngay!
               </Badge>
             ) : (
-              <TableCheckOut></TableCheckOut>
+              <TableCheckOut order={orders}></TableCheckOut>
             )}
           </Col>
           {cart.length > 0 && (
@@ -69,7 +74,6 @@ function EditCartPage() {
                 <Table responsive="sm" className="">
                   <thead>
                     <tr className="fs-16">
-                      <th>&nbsp;</th>
                       <th>Sách</th>
                       <th>Tác giả</th>
                       <th>Số lượng</th>
@@ -80,23 +84,6 @@ function EditCartPage() {
                     {/* loop through cart products */}
                     {cart.map((item) => (
                       <tr>
-                        <td>
-                          {!isLoading && (
-                            <UilTimesCircle
-                              className="btn-remove"
-                              style={{
-                                margin: "35px 0 0 10px",
-                                cursor: "pointer",
-                              }}
-                              onClick={() =>
-                                removeFromCart({
-                                  productId: item._id,
-                                  userId: user._id,
-                                })
-                              }
-                            ></UilTimesCircle>
-                          )}
-                        </td>
                         <td>
                           <img
                             alt=""
@@ -112,7 +99,7 @@ function EditCartPage() {
                         <td>{item.author}</td>
                         <td>
                           <span className="quantity-indicator">
-                            <span>{user.cart[item._id]}</span>
+                            <span>1</span>
                           </span>
                         </td>
                         <td>{item.publisher}</td>

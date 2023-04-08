@@ -2,7 +2,9 @@ import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 
-export default function ModalCustom() {
+export default function ModalCustom({ handleClose }) {
+  const [show, setShow] = useState(false);
+
   return (
     <div>
       <Modal show={show} onHide={handleClose}>

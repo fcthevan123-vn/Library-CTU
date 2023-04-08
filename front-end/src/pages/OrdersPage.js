@@ -27,8 +27,12 @@ function OrdersPage() {
   const [loading, setLoading] = useState(false);
   const [productShow, setProductShow] = useState("");
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [orderToEdit, setOrderToEdit] = useState([]);
   const [orderToShow, setOrderToShow] = useState([]);
   const handleClose = () => setShow(false);
+  const handleCloseEdit = () => setShowEdit(false);
+
   const [cancelOrder, { isLoading, isSuccess }] = useCancelOrderMutation();
   const [showToast, setShowToast] = useState(false);
 
@@ -53,7 +57,7 @@ function OrdersPage() {
   }, []);
 
   localStorage.removeItem("toastShowed");
-  console.log(orders[0]);
+
   // format date
   function formatDate(date) {
     const arrDate = date.split("-");
@@ -76,12 +80,29 @@ function OrdersPage() {
     setShow(true);
   }
 
+  function EditOrderHandle(orderObj) {
+    setOrderToEdit(orderObj);
+    setShowEdit(true);
+  }
+
   // view more
   function ViewMore({ products }) {
     return (
       <span style={{ cursor: "pointer" }} onClick={() => showOrder(products)}>
         Xem chi tiết <UilEye></UilEye>
       </span>
+    );
+  }
+
+  // edit order
+  function EditOrder({ order }) {
+    return (
+      <button
+        className="btn btn-primary fs-14 mb-1"
+        onClick={() => EditOrderHandle(order)}
+      >
+        Chỉnh sửa
+      </button>
     );
   }
 
@@ -191,9 +212,10 @@ function OrdersPage() {
                                   Chỉnh sửa
                                 </button>
                               </LinkContainer> */}
-                              <button className="btn btn-primary fs-14 mb-1">
+                              {/* <button className="btn btn-primary fs-14 mb-1">
                                 Chỉnh sửa
-                              </button>
+                              </button> */}
+                              <EditOrder order={order}></EditOrder>
                               <button
                                 className="btn btn-danger fs-14"
                                 onClick={() =>
@@ -213,6 +235,7 @@ function OrdersPage() {
                     ))}
                   </tbody>
 
+                  {/* modal xem chi tiết */}
                   <Modal show={show} onHide={handleClose} className="pt-5 ">
                     <Modal.Header closeButton>
                       <Modal.Title className="fs-16">
@@ -241,9 +264,68 @@ function OrdersPage() {
                     ))}
                     <Modal.Footer style={{ borderTop: "0px" }}>
                       <Button
-                        variant="secondary"
-                        className="text-white"
+                        variant="primary"
+                        className="text-white fs-14"
                         onClick={handleClose}
+                      >
+                        Đóng
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+
+                  {/* modal edit order */}
+                  <Modal
+                    show={showEdit}
+                    onHide={handleCloseEdit}
+                    className="pt-5"
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title className="fs-16">
+                        Chỉnh sửa: {orderToEdit._id}
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <div class="row g-2">
+                        <div className="col-md">
+                          <div className="form-floating">
+                            <input
+                              type="date"
+                              className="form-control"
+                              id="floatingInputGrid"
+                              placeholder="2003/04/06"
+                              value=""
+                            />
+                            <label for="floatingInputGrid">Ngày lấy sách</label>
+                          </div>
+                        </div>
+                        <div className="col-md">
+                          <div className="form-floating">
+                            <input
+                              type="email"
+                              className="form-control"
+                              id="floatingInputGrid2"
+                              placeholder="name@example.com"
+                              value="mdo@example.com"
+                            />
+                            <label for="floatingInputGrid2">
+                              Ngày nhận sách
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        variant="primary"
+                        className="fs-14"
+                        onClick={handleCloseEdit}
+                      >
+                        Lưu thay đổi
+                      </Button>
+                      <Button
+                        variant="secondary"
+                        className="fs-14"
+                        onClick={handleCloseEdit}
                       >
                         Đóng
                       </Button>

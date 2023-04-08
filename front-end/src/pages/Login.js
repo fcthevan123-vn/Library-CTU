@@ -10,9 +10,11 @@ import ToastMessage from "../components/ToastMessage";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [validated, setValidated] = useState(false);
   const [login, { isError, isLoading, error }] = useLoginMutation();
   const navigate = useNavigate();
   function handleLogin(e) {
+    setValidated(true);
     e.preventDefault();
     login({ email, password });
     localStorage.setItem("toastShowed", true);
@@ -29,6 +31,66 @@ function Login() {
                 <div className="circle"></div>
                 <div className="card-signup-inner">
                   <Form
+                    style={{ width: "100%" }}
+                    className="form-wrapper"
+                    noValidate
+                    validated={validated}
+                    onSubmit={handleLogin}
+                  >
+                    <h3 className="fs-22">Đăng nhập vào tài khoản của bạn</h3>
+                    {isError && <Alert variant="danger">{error.data}</Alert>}
+                    <Form.Group className="my-3" controlId="validationCustom01">
+                      <Form.Label className="d-flex fs-16">Email:</Form.Label>
+                      <Form.Control
+                        type="email"
+                        placeholder="Nhập email"
+                        value={email}
+                        required
+                        onChange={(e) => setEmail(e.target.value)}
+                      ></Form.Control>
+                      <Form.Control.Feedback type="invalid">
+                        Email chưa đúng
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group className="my-3" controlId="validationCustom02">
+                      <Form.Label className="d-flex fs-16">
+                        Mật khẩu:{" "}
+                      </Form.Label>
+                      <Form.Control
+                        type="password"
+                        placeholder="Nhập mật khẩu"
+                        value={password}
+                        required
+                        onChange={(e) => setPassword(e.target.value)}
+                      ></Form.Control>
+                      <Form.Control.Feedback type="invalid">
+                        Mật khẩu chưa đúng
+                      </Form.Control.Feedback>
+                    </Form.Group>
+
+                    <Form.Group>
+                      <button type="submit" className="fs-16 btn-signup">
+                        Đăng nhập
+                      </button>
+                    </Form.Group>
+                    <p className="text-description pt-2">
+                      Bạn không có tài khoản?{" "}
+                      <Link to="/signup">Đăng ký ngay</Link>
+                    </p>
+
+                    {/* <Form.Group className="mb-3">
+                      <Form.Check
+                        required
+                        label="Agree to terms and conditions"
+                        feedback="You must agree before submitting."
+                        feedbackType="invalid"
+                      />
+                    </Form.Group>
+                    <Button type="submit">Submit form</Button> */}
+                  </Form>
+
+                  {/* <Form
                     style={{ width: "100%" }}
                     onSubmit={handleLogin}
                     className="form-wrapper"
@@ -64,19 +126,12 @@ function Login() {
                       <button type="submit" className="fs-16 btn-signup">
                         Đăng nhập
                       </button>
-                      {/* <Button
-                        type="submit"
-                        disabled={isLoading}
-                        className="w-25 my-3 rounded-pill fs-14"
-                      >
-                        Đăng nhập
-                      </Button> */}
                     </Form.Group>
                     <p className="text-description pt-2">
                       Bạn không có tài khoản?{" "}
                       <Link to="/signup">Đăng ký ngay</Link>
                     </p>
-                  </Form>
+                  </Form> */}
                 </div>
               </div>
             </Col>
