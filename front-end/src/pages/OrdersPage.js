@@ -32,13 +32,16 @@ function OrdersPage() {
   const [productShow, setProductShow] = useState("");
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
   const [orderToEdit, setOrderToEdit] = useState([]);
+  const [orderToDelete, setOrderToDelete] = useState([]);
   const [orderToShow, setOrderToShow] = useState([]);
   const [returnDate, setReturnDate] = useState("");
   const [takeBookDate, setTakeBookDate] = useState("");
   const dispatch = useDispatch();
   const handleClose = () => setShow(false);
   const handleCloseEdit = () => setShowEdit(false);
+  const handleCloseDelete = () => setShowDelete(false);
 
   const [cancelOrder, { isLoading, isSuccess }] = useCancelOrderMutation();
   const [editOrder] = useEditOrderMutation();
@@ -47,15 +50,14 @@ function OrdersPage() {
 
   useEffect(() => {
     setLoading(true);
-    setShowToast(false);
     async function getData() {
       await axios
         .get(`/users/${user._id}/orders`)
         .then(({ data }) => {
-          setLoading(false);
           const dataClone = data;
           const dataShorted = dataClone.reverse();
           setOrders(dataShorted);
+          setLoading(false);
         })
         .catch((e) => {
           setLoading(false);
@@ -127,16 +129,30 @@ function OrdersPage() {
     );
   }
 
-  function handleCancelOrder(orderId, products) {
+  function handleCancelOrder(order) {
+    setOrderToDelete(order);
+    setShowDelete(true);
+  }
+
+  function DeleteOrderAfterShow(orderId, products) {
     // Chuyển object products thành mảng
     const arrProduct = Object.keys(products).map((key) => key);
-    if (window.confirm("Bạn có chắc chắn muốn huỷ không?")) {
-      cancelOrder({ orderId: orderId, userId: user._id, products: arrProduct });
-      setShowToast(true);
-      setTimeout(() => {
-        window.location.reload();
-      }, 1500);
-    }
+    cancelOrder({ orderId: orderId, userId: user._id, products: arrProduct });
+    setShowToast(true);
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
+  }
+
+  function DeleteOrder({ order }) {
+    return (
+      <button
+        className="btn btn-danger fs-14"
+        onClick={() => handleCancelOrder(order)}
+      >
+        Huỷ{" "}
+      </button>
+    );
   }
 
   if (loading) {
@@ -144,8 +160,17 @@ function OrdersPage() {
   }
 
   if (orders.length === 0) {
-    return <h1 className="text-center pt-3 fs-30">Không có order nào ở đây</h1>;
+    return (
+      <div className="orderPage-wrapper orderPage-wrapper-null">
+        <h2 className="fs-30">Bạn chưa mượn sách lần nào cả.</h2>
+        <LinkContainer to="/all-book">
+          <button className="btn-order-null">Mượn sách ngay</button>
+        </LinkContainer>
+      </div>
+    );
   }
+
+  console.log(orders.length);
 
   return (
     <div>
@@ -230,27 +255,20 @@ function OrdersPage() {
                         <td>
                           {order.status === "Đang xử lý" ? (
                             <div className="d-flex justify-content-center align-items-center flex-column">
-                              {/* <LinkContainer to={`/orders/${order._id}/edit`}>
-                                <button className="btn btn-primary fs-14 mb-1">
-                                  Chỉnh sửa
-                                </button>
-                              </LinkContainer> */}
-                              {/* <button className="btn btn-primary fs-14 mb-1">
-                                Chỉnh sửa
-                              </button> */}
                               <EditOrder
                                 order={order}
                                 returnDate={returnDate}
                                 takeBookDate={takeBookDate}
                               ></EditOrder>
-                              <button
+                              {/* <button
                                 className="btn btn-danger fs-14"
                                 onClick={() =>
                                   handleCancelOrder(order._id, order.products)
                                 }
                               >
                                 Huỷ{" "}
-                              </button>
+                              </button> */}
+                              <DeleteOrder order={order}></DeleteOrder>
                             </div>
                           ) : (
                             <button className="btn btn-danger fs-14" disabled>
@@ -308,7 +326,7 @@ function OrdersPage() {
                   >
                     <Modal.Header closeButton>
                       <Modal.Title className="fs-16">
-                        Chỉnh sửa: {orderToEdit._id} {orderToEdit.returnDate}
+                        Chỉnh sửa: {orderToEdit._id}
                       </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -365,6 +383,47 @@ function OrdersPage() {
                         variant="secondary text-white"
                         className="fs-14"
                         onClick={handleCloseEdit}
+                      >
+                        Đóng
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+
+                  {/* modal delete order */}
+                  <Modal
+                    show={showDelete}
+                    onHide={handleCloseDelete}
+                    className="pt-5"
+                  >
+                    <Modal.Header closeButton>
+                      <Modal.Title className="fs-16">
+                        Bạn có chắc chắn xoá không?
+                      </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                      <p className="fs-14">
+                        Một khi đã xoá thì không thể khôi phục, hãy cân nhắc.{" "}
+                        <br></br>
+                        Id: {orderToDelete._id}
+                      </p>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button
+                        variant="danger"
+                        className="fs-14 text-white"
+                        onClick={() => {
+                          DeleteOrderAfterShow(
+                            orderToDelete._id,
+                            orderToDelete.products
+                          );
+                        }}
+                      >
+                        Đồng ý
+                      </Button>
+                      <Button
+                        variant="secondary text-white"
+                        className="fs-14"
+                        onClick={handleCloseDelete}
                       >
                         Đóng
                       </Button>

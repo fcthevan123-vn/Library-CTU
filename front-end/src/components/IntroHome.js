@@ -41,19 +41,14 @@ function IntroHome() {
               </LinkContainer>
             ) : (
               <LinkContainer to="/login">
-                <button
-                  type="button"
-                  className="btn btn-primary btn-lg px-4 gap-3 fs-18 text-white"
-                >
+                <button className="button-introHome fs-18">
+                  {" "}
                   Mượn sách ngay
                 </button>
               </LinkContainer>
             )}
             <LinkContainer to="/intro">
-              <button
-                type="button"
-                className="btn btn-outline-primary btn-lg px-4 fs-18 "
-              >
+              <button type="button" className="button-introHome-more fs-18 ">
                 Xem thông tin về chúng tôi
               </button>
             </LinkContainer>

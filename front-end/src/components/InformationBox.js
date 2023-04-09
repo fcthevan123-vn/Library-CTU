@@ -2,6 +2,10 @@ import React from "react";
 import "./InformationBox.css";
 
 function InformationBox({ name, email, studentID, orders }) {
+  if (orders.length == 0) {
+    return <h1>Bạn chưa có order nào</h1>;
+  }
+
   let count = 0;
   const countProduct = () => {
     orders.map((order) => {

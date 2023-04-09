@@ -28,10 +28,10 @@ function ProductPreview({ _id, category, name, pictures, author }) {
           <Badge bg="warning">{category}</Badge>
         </Card.Body>
         {/* <hr style={{ margin: "none" }}></hr> */}
-        <div className="d-flex justify-content-center align-items-center mb-3">
-          <Button variant="primary" className="btn-sm ">
-            <span className="fs-14 text-white">Xem chi tiết</span>
-          </Button>
+        <div className=" mb-3 view-more-product">
+          <button type="button" class="btn-preview-product">
+            Xem chi tiết
+          </button>
         </div>
       </Card>
     </LinkContainer>

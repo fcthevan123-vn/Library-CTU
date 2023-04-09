@@ -79,18 +79,6 @@ function ListBook() {
                   ) : (
                     <h4>Không có sách nào có chứa "{searchTerm}"</h4>
                   )}
-
-                  {/* {productsSearch.length > 0 ? (
-                    productsSearch.map((product) =>
-                      product.quantity > 0 ? (
-                        <ProductPreview {...product} />
-                      ) : (
-                        <ProductPreview {...product} disable={true} />
-                      )
-                    )
-                  ) : (
-                    <h4>Không có sách nào có chứa "{searchTerm}"</h4>
-                  )} */}
                 </div>
               </Tab>
               <Tab eventKey="category" title="Danh mục sách">

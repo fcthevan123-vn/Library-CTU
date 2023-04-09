@@ -16,26 +16,29 @@ function CategoryPage() {
 
   useEffect(() => {
     setLoading(true);
-    axios
-      .get(`/products/category/${category}`)
-      .then(({ data }) => {
-        setLoading(false);
+    const fetchProducts = async () => {
+      try {
+        const { data } = await axios.get(`/products/category/${category}`);
         setProducts(data);
         console.log(data);
-      })
-      .catch((e) => {
+      } catch (error) {
+        console.log(error.message);
+      } finally {
         setLoading(false);
-        console.log(e.message);
-      });
+      }
+    };
+    fetchProducts();
   }, [category]);
 
   if (loading) {
-    <Loading />;
+    return <Loading />;
   }
 
   const productsSearch = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  console.log(productsSearch);
 
   function ProductSearch({ _id, category, name, pictures, author }) {
     return (
