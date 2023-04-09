@@ -90,6 +90,21 @@ export const appApi = createApi({
         method: "DELETE",
       }),
     }),
+
+    // edit order
+    editOrder: builder.mutation({
+      query: ({ orderId, returnDate, takeBookDate }) => ({
+        url: `/orders/${orderId}/edit`,
+        body: {
+          returnDate,
+          takeBookDate,
+        },
+        method: "PATCH",
+      }),
+      params: {
+        orderId: "string",
+      },
+    }),
   }),
 });
 
@@ -103,6 +118,7 @@ export const {
   useDeleteProductMutation,
   useUpdateProductMutation,
   useCancelOrderMutation,
+  useEditOrderMutation,
 } = appApi;
 
 export default appApi;

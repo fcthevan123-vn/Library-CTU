@@ -101,7 +101,19 @@ router.delete("/:id", async (req, res) => {
 // edit order
 router.patch("/:id/edit", async (req, res) => {
   const { id } = req.params;
-  const { userId } = req.body;
+  const { returnDate, takeBookDate } = req.body;
+  try {
+    const order = await Order.findById(id);
+    console.log(returnDate, takeBookDate);
+    order.returnDate = returnDate;
+    if (!order.ship) {
+      order.takeBookDate = takeBookDate;
+    }
+    await order.save();
+    res.status(200).json(order);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
 });
 
 module.exports = router;

@@ -8,7 +8,7 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "../axios";
 import Loading from "../components/Loading";
 import { UilRocket, UilHome, UilEye } from "@iconscout/react-unicons";
@@ -16,9 +16,13 @@ import "./OrdersPage.css";
 import Footer from "../components/Footer";
 import InformationBox from "../components/InformationBox";
 import ToastMessage from "../components/ToastMessage";
-import { useCancelOrderMutation } from "../services/appApi";
+import {
+  useCancelOrderMutation,
+  useEditOrderMutation,
+} from "../services/appApi";
 import { Navigate } from "react-router-dom";
 import { LinkContainer } from "react-router-bootstrap";
+import { current } from "@reduxjs/toolkit";
 
 function OrdersPage() {
   const user = useSelector((state) => state.user);
@@ -30,10 +34,15 @@ function OrdersPage() {
   const [showEdit, setShowEdit] = useState(false);
   const [orderToEdit, setOrderToEdit] = useState([]);
   const [orderToShow, setOrderToShow] = useState([]);
+  const [returnDate, setReturnDate] = useState("");
+  const [takeBookDate, setTakeBookDate] = useState("");
+  const dispatch = useDispatch();
   const handleClose = () => setShow(false);
   const handleCloseEdit = () => setShowEdit(false);
 
   const [cancelOrder, { isLoading, isSuccess }] = useCancelOrderMutation();
+  const [editOrder] = useEditOrderMutation();
+
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
@@ -80,9 +89,21 @@ function OrdersPage() {
     setShow(true);
   }
 
-  function EditOrderHandle(orderObj) {
+  function EditOrderHandle(orderObj, returnDate, takeBookDate) {
     setOrderToEdit(orderObj);
     setShowEdit(true);
+  }
+
+  function handleEditOrder(orderObj, returnDate, takeBookDate) {
+    editOrder({
+      orderId: orderObj._id,
+      returnDate,
+      takeBookDate,
+    });
+    setShowEdit(false);
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
   }
 
   // view more
@@ -95,11 +116,11 @@ function OrdersPage() {
   }
 
   // edit order
-  function EditOrder({ order }) {
+  function EditOrder({ order, returnDate, takeBookDate }) {
     return (
       <button
-        className="btn btn-primary fs-14 mb-1"
-        onClick={() => EditOrderHandle(order)}
+        className="btn btn-primary fs-14 mb-1 text-white"
+        onClick={() => EditOrderHandle(order, returnDate, takeBookDate)}
       >
         Chỉnh sửa
       </button>
@@ -129,7 +150,7 @@ function OrdersPage() {
   return (
     <div>
       <div className="orderPage-wrapper">
-        <Container>
+        <Container fluid>
           <Row>
             <Col
               md={3}
@@ -143,7 +164,7 @@ function OrdersPage() {
               ></InformationBox>
             </Col>
             <Col md={9}>
-              <h1 className="text-center my-4 fs-22">
+              <h1 className="text-center my-4 fs-22 order-title">
                 Danh sách mượn sách của {user.name}
               </h1>
               <div className="table-wrapper">
@@ -159,7 +180,8 @@ function OrdersPage() {
                       <th>ID mượn sách</th>
                       <th>Trạng thái</th>
                       <th>Ngày giờ mượn</th>
-                      <th>Ngày dự kiến trả</th>
+                      <th>Ngày lấy sách</th>
+                      <th>Ngày trả sách</th>
                       <th>Phương thức nhận sách</th>
                       <th>Xem chi tiết</th>
                       <th>Chỉnh sửa</th>
@@ -187,6 +209,7 @@ function OrdersPage() {
                           </Badge>
                         </td>
                         <td>{order.date}</td>
+                        <td>{formatDate(order.takeBookDate)}</td>
                         <td>{formatDate(order.returnDate)}</td>
                         <td>
                           {order.ship ? (
@@ -206,7 +229,7 @@ function OrdersPage() {
                         </td>
                         <td>
                           {order.status === "Đang xử lý" ? (
-                            <div>
+                            <div className="d-flex justify-content-center align-items-center flex-column">
                               {/* <LinkContainer to={`/orders/${order._id}/edit`}>
                                 <button className="btn btn-primary fs-14 mb-1">
                                   Chỉnh sửa
@@ -215,7 +238,11 @@ function OrdersPage() {
                               {/* <button className="btn btn-primary fs-14 mb-1">
                                 Chỉnh sửa
                               </button> */}
-                              <EditOrder order={order}></EditOrder>
+                              <EditOrder
+                                order={order}
+                                returnDate={returnDate}
+                                takeBookDate={takeBookDate}
+                              ></EditOrder>
                               <button
                                 className="btn btn-danger fs-14"
                                 onClick={() =>
@@ -281,34 +308,40 @@ function OrdersPage() {
                   >
                     <Modal.Header closeButton>
                       <Modal.Title className="fs-16">
-                        Chỉnh sửa: {orderToEdit._id}
+                        Chỉnh sửa: {orderToEdit._id} {orderToEdit.returnDate}
                       </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                       <div class="row g-2">
+                        {!orderToEdit.ship && (
+                          <div className="col-md">
+                            <div className="form-floating">
+                              <input
+                                type="date"
+                                className="form-control"
+                                id="floatingInputGrid"
+                                value={takeBookDate}
+                                onChange={(e) =>
+                                  setTakeBookDate(e.target.value)
+                                }
+                              />
+                              <label for="floatingInputGrid">
+                                Ngày lấy sách
+                              </label>
+                            </div>
+                          </div>
+                        )}
                         <div className="col-md">
                           <div className="form-floating">
                             <input
                               type="date"
                               className="form-control"
-                              id="floatingInputGrid"
-                              placeholder="2003/04/06"
-                              value=""
-                            />
-                            <label for="floatingInputGrid">Ngày lấy sách</label>
-                          </div>
-                        </div>
-                        <div className="col-md">
-                          <div className="form-floating">
-                            <input
-                              type="email"
-                              className="form-control"
                               id="floatingInputGrid2"
-                              placeholder="name@example.com"
-                              value="mdo@example.com"
+                              value={returnDate}
+                              onChange={(e) => setReturnDate(e.target.value)}
                             />
                             <label for="floatingInputGrid2">
-                              Ngày nhận sách
+                              Ngày trả sách
                             </label>
                           </div>
                         </div>
@@ -317,13 +350,19 @@ function OrdersPage() {
                     <Modal.Footer>
                       <Button
                         variant="primary"
-                        className="fs-14"
-                        onClick={handleCloseEdit}
+                        className="fs-14 text-white"
+                        onClick={() => {
+                          handleEditOrder(
+                            orderToEdit,
+                            returnDate,
+                            takeBookDate
+                          );
+                        }}
                       >
                         Lưu thay đổi
                       </Button>
                       <Button
-                        variant="secondary"
+                        variant="secondary text-white"
                         className="fs-14"
                         onClick={handleCloseEdit}
                       >
