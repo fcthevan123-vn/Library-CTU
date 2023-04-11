@@ -8,13 +8,8 @@ require("./connection");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
-  cors: {
-    origin: [
-      "https://library-ctu-app.onrender.com",
-      "https://library-ctu-backend.onrender.com",
-    ],
-    methods: ["GET", "POST", "PATCH", "DELETE"],
-  },
+  cors: "http://localhost:3001",
+  methods: ["GET", "POST", "PATCH", "DELETE"],
 });
 
 const User = require("./models/User");
