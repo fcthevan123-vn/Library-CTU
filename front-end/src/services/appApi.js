@@ -105,6 +105,17 @@ export const appApi = createApi({
         orderId: "string",
       },
     }),
+
+    // edit order
+    deleteUser: builder.mutation({
+      query: ({ userId, admin }) => ({
+        url: `/users/${userId}/delete-user`,
+        body: {
+          admin,
+        },
+        method: "DELETE",
+      }),
+    }),
   }),
 });
 
@@ -119,6 +130,7 @@ export const {
   useUpdateProductMutation,
   useCancelOrderMutation,
   useEditOrderMutation,
+  useDeleteUserMutation,
 } = appApi;
 
 export default appApi;

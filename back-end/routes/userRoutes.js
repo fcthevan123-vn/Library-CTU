@@ -67,4 +67,21 @@ router.get("/:id/edit-cart", async (req, res) => {
   }
 });
 
+// delete user
+router.delete("/:id/delete-user", async (req, res) => {
+  const { id } = req.params;
+  const { admin } = req.body;
+  console.log(admin);
+  try {
+    if (admin && !admin.isAdmin) {
+      return res.status(400).send("Bạn không phải là admin");
+    }
+    await User.findByIdAndDelete(id);
+    const users = await User.find({ isAdmin: false }).populate("orders");
+    res.json(users);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+});
+
 module.exports = router;

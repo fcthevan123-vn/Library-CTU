@@ -380,7 +380,7 @@ function OrdersPage() {
                         Lưu thay đổi
                       </Button>
                       <Button
-                        variant="secondary text-white"
+                        variant="primary text-white"
                         className="fs-14"
                         onClick={handleCloseEdit}
                       >
@@ -421,7 +421,7 @@ function OrdersPage() {
                         Đồng ý
                       </Button>
                       <Button
-                        variant="secondary text-white"
+                        variant="primary text-white"
                         className="fs-14"
                         onClick={handleCloseDelete}
                       >
