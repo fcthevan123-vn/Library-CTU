@@ -8,8 +8,13 @@ require("./connection");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server, {
-  cors: "https://library-ctu-app.onrender.com",
-  methods: ["GET", "POST", "PATCH", "DELETE"],
+  cors: {
+    origin: [
+      "https://library-ctu-app.onrender.com",
+      "https://library-ctu-backend.onrender.com",
+    ],
+    methods: ["GET", "POST", "PATCH", "DELETE"],
+  },
 });
 
 const User = require("./models/User");
@@ -28,22 +33,6 @@ app.use("/users", userRoutes);
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/images", imageRoutes);
-
-// app.post('/create-payment', async(req, res)=> {
-//   const {amount} = req.body;
-//   console.log(amount);
-//   try {
-//     const paymentIntent = await stripe.paymentIntents.create({
-//       amount,
-//       currency: 'usd',
-//       payment_method_types: ['card']
-//     });
-//     res.status(200).json(paymentIntent)
-//   } catch (e) {
-//     console.log(e.message);
-//     res.status(400).json(e.message);
-//    }
-// })
 
 // bắt đầu server, lắng nghe các kết nối của người dùng tại cổng 8080
 server.listen(8080, () => {
