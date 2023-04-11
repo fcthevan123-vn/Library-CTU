@@ -20,9 +20,8 @@ import {
   useCancelOrderMutation,
   useEditOrderMutation,
 } from "../services/appApi";
-import { Navigate } from "react-router-dom";
+
 import { LinkContainer } from "react-router-bootstrap";
-import { current } from "@reduxjs/toolkit";
 
 function OrdersPage() {
   const user = useSelector((state) => state.user);

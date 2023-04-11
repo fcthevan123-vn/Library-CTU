@@ -116,7 +116,7 @@ function CheckoutForm() {
           Bạn sẽ phải trả 20.000VND cho phí vận chuyển.
         </Badge>
         <Row></Row>
-        <Button className="mt-3 fs-16 text-white rounded-pill" type="submit">
+        <Button className="mt-3 fs-14 text-white rounded-pill" type="submit">
           Mượn sách ngay
         </Button>
       </Form>

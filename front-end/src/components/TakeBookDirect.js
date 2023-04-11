@@ -118,7 +118,7 @@ function TakeBookDirect() {
           Lưu ý hãy đến nhận sách đúng với ngày bạn đã chọn.
         </Badge>
         <Row></Row>
-        <Button className="mt-3 rounded-pill text-white fs-16" type="submit">
+        <Button className="mt-3 rounded-pill text-white fs-14" type="submit">
           Mượn sách ngay
         </Button>
       </Form>

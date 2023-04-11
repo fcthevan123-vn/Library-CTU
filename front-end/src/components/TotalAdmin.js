@@ -48,17 +48,21 @@ function TotalAdmin() {
   const formattedDate = `${day.toString().padStart(2, "0")}/${month
     .toString()
     .padStart(2, "0")}/${year}`;
-
+  console.log(formattedDate);
   function countInformation() {
     orders.map((order) => {
-      const date = order.date.slice(0, 10);
+      const dateArr = order.date.slice(0, 10).split("/");
+      const date = `${dateArr[2]}/${dateArr[1]}/${dateArr[0]}`;
       if (date === formattedDate) {
         totalOrderedInday += 1;
       }
       totalBookOrdered += Object.keys(order.products).length;
+      return null;
     });
   }
+
   countInformation();
+  console.log(orders[0]);
 
   if (loading) {
     return <Loading></Loading>;

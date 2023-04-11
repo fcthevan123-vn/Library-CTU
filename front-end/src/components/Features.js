@@ -28,9 +28,10 @@ function Features() {
               </div>
               <h3 className="fs-18 text-center">Nhanh chóng</h3>
               <p className="fs-14 text-description">
-                Thư viện Trường Đại học Cần Thơ mang đến cho bạn trải nghiệm tốt
-                nhất khi mượn sách. Với những tiện ích và rất dễ dàng sử dụng,
-                hy vọng các bạn sẽ hài lòng khi trải nghiệm dịch vụ.
+                Trang quản lý thư viện của chúng tôi được thiết kế để đáp ứng
+                nhu cầu của người dùng với tốc độ nhanh chóng. Bạn có thể tìm
+                kiếm sách một cách dễ dàng và mượn sách chỉ trong vài cú nhấp
+                chuột. Hãy mượn sách ngay
               </p>
             </div>
           </div>
@@ -49,9 +50,10 @@ function Features() {
               </div>
               <h3 className="fs-18 text-center ">Dễ dàng</h3>
               <p className="fs-14 text-description">
-                Thư viện Trường Đại học Cần Thơ mang đến cho bạn trải nghiệm tốt
-                nhất khi mượn sách. Với những tiện ích và rất dễ dàng sử dụng,
-                hy vọng các bạn sẽ hài lòng khi trải nghiệm dịch vụ.
+                Các chức năng trên trang web quản lý thư viện của chúng tôi được
+                thiết kế đơn giản và dễ sử dụng. Người dùng có thể dễ dàng tìm
+                kiếm sách và lựa chọn các tùy chọn mượn sách phù hợp với nhu cầu
+                của mình.
               </p>
             </div>
           </div>
@@ -70,9 +72,10 @@ function Features() {
               </div>
               <h3 className="fs-18 text-center ">Có nhiều thể loại sách</h3>
               <p className="fs-14 text-description">
-                Thư viện Trường Đại học Cần Thơ mang đến cho bạn trải nghiệm tốt
-                nhất khi mượn sách. Với những tiện ích và rất dễ dàng sử dụng,
-                hy vọng các bạn sẽ hài lòng khi trải nghiệm dịch vụ.
+                Thư viện của chúng tôi cung cấp nhiều thể loại sách khác nhau để
+                đáp ứng nhu cầu đa dạng của độc giả. Bạn có thể tìm kiếm sách
+                theo tác giả, thể loại hoặc từ khóa để tìm kiếm sách một cách dễ
+                dàng và nhanh chóng.
               </p>
             </div>
           </div>
@@ -103,9 +106,10 @@ function Features() {
               </div>
               <h3 className="fs-18 text-center">Toàn diện</h3>
               <p className="fs-14 text-description">
-                Thư viện Trường Đại học Cần Thơ mang đến cho bạn trải nghiệm tốt
-                nhất khi mượn sách. Với những tiện ích và rất dễ dàng sử dụng,
-                hy vọng các bạn sẽ hài lòng khi trải nghiệm dịch vụ.
+                Trang quản lý thư viện của chúng tôi cung cấp một giải pháp quản
+                lý sách toàn diện, giúp quản lý các thông tin về sách, tài liệu,
+                độc giả, nhân viên và các hoạt động liên quan đến thư viện một
+                cách chính xác và dễ dàng.
               </p>
             </div>
           </div>
@@ -124,9 +128,10 @@ function Features() {
               </div>
               <h3 className="fs-18 text-center">Trực quan</h3>
               <p className="fs-14 text-description">
-                Thư viện Trường Đại học Cần Thơ mang đến cho bạn trải nghiệm tốt
-                nhất khi mượn sách. Với những tiện ích và rất dễ dàng sử dụng,
-                hy vọng các bạn sẽ hài lòng khi trải nghiệm dịch vụ.
+                Giao diện trang quản lý thư viện được thiết kế trực quan, dễ sử
+                dụng và có khả năng tương tác cao giữa người dùng và hệ thống.
+                Người dùng có thể dễ dàng quản lý thông tin, tạo ra các báo cáo
+                và thống kê một cách chính xác và dễ dàng.
               </p>
             </div>
           </div>
@@ -145,9 +150,10 @@ function Features() {
               </div>
               <h3 className="fs-18 text-center">Kiểm soát</h3>
               <p className="fs-14 text-description">
-                Thư viện Trường Đại học Cần Thơ mang đến cho bạn trải nghiệm tốt
-                nhất khi mượn sách. Với những tiện ích và rất dễ dàng sử dụng,
-                hy vọng các bạn sẽ hài lòng khi trải nghiệm dịch vụ.
+                Trang quản lý thư viện của chúng tôi có khả năng kiểm soát cao
+                với các chức năng giám sát và báo cáo tự động. Người quản lý có
+                thể kiểm tra và theo dõi các hoạt động mượn, cập nhật thông tin
+                sách, độc giả và nhân viên một cách dễ dàng và chính xác.
               </p>
             </div>
           </div>
