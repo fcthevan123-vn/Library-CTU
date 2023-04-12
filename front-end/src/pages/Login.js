@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../services/appApi";
 import Footer from "../components/Footer";
 import ToastMessage from "../components/ToastMessage";
+import Loading from "../components/Loading";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -22,6 +23,7 @@ function Login() {
 
   return (
     <div>
+      {isLoading && <Loading></Loading>}
       <div className="login-container" id="login-container">
         <Container className="">
           <Row>
