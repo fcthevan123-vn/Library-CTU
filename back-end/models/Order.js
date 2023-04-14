@@ -1,19 +1,6 @@
 const mongoose = require("mongoose");
 const moment = require("moment-timezone");
 
-// Format date
-// const formattedDate = new Date()
-//   .toLocaleString("en-US", {
-//     timeZone: "Asia/Ho_Chi_Minh",
-//     year: "numeric",
-//     month: "2-digit",
-//     day: "2-digit",
-//     hour: "2-digit",
-//     minute: "2-digit",
-//     second: "2-digit",
-//   })
-//   .replace(/(\d+)\/(\d+)\/(\d+)/, "$2/$1/$3");
-
 const formattedDate = moment()
   .tz("Asia/Ho_Chi_Minh")
   .format("YYYY/MM/DD hh:mm:ss");

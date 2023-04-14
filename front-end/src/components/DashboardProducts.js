@@ -17,10 +17,6 @@ function DashboardProducts() {
   const [productShow, setProductShow] = useState([]);
   const [showToast, setShowToast] = useState(false);
 
-  // reverse products array
-  let productsReverse = products.slice().reverse();
-
-  // const handleShow = () => setShow(true);
   function handleShow(_id, userId) {
     setShow(true);
     setShowToast(false);
@@ -33,16 +29,9 @@ function DashboardProducts() {
 
   function handleDeleteProduct(id) {
     deletProduct({ product_id: id, user_id: user._id });
-    productsReverse = products.slice().reverse();
     setShow(false);
     setShowToast(true);
   }
-
-  // removing the product
-  // function handleDeleteProduct(id) {
-  //   if (window.confirm("Bạn có chắc chắn xoá sách này không"))
-  //     deletProduct({ product_id: id, user_id: user._id });
-  // }
 
   function emptyArray(arr) {
     if (arr.length === 0) {

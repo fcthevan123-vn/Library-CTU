@@ -67,7 +67,6 @@ router.get("/:id/edit-cart", async (req, res) => {
   }
 });
 
-// delete user
 router.delete("/:id/delete-user", async (req, res) => {
   const { id } = req.params;
   const { admin } = req.body;
@@ -76,7 +75,14 @@ router.delete("/:id/delete-user", async (req, res) => {
     if (admin && !admin.isAdmin) {
       return res.status(400).send("Bạn không phải là admin");
     }
+
+    // Xóa tất cả các order có owner là user cần xoá
+    await Order.deleteMany({ owner: id });
+
+    // Xóa user
     await User.findByIdAndDelete(id);
+
+    // Lấy danh sách user còn lại
     const users = await User.find({ isAdmin: false }).populate("orders");
     res.json(users);
   } catch (e) {

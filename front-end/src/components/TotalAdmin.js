@@ -122,7 +122,7 @@ function TotalAdmin() {
                 <p className="fs-16 ">
                   <strong>{totalBookOrdered}</strong>
                 </p>
-                <p className="fs-14 ">Sách đã được mượn</p>
+                <p className="fs-14 ">Cuốn sách đã được mượn</p>
               </div>
             </div>
           </div>

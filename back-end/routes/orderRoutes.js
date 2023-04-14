@@ -59,7 +59,37 @@ router.patch("/:id/mark-shipped", async (req, res) => {
   const { id } = req.params;
   try {
     const user = await User.findById(ownerId);
-    await Order.findByIdAndUpdate(id, { status: "Sách đã được gửi đi" });
+    await Order.findByIdAndUpdate(id, { status: "Đã nhận" });
+    const orders = await Order.find().populate("owner", [
+      "email",
+      "name",
+      "studentID",
+    ]);
+    await user.save();
+    res.status(200).json(orders);
+  } catch (e) {
+    res.status(400).json(e.message);
+  }
+});
+
+router.patch("/:id/mark-return-book", async (req, res) => {
+  const { ownerId } = req.body;
+  const { id } = req.params;
+  try {
+    const user = await User.findById(ownerId);
+    await Order.findByIdAndUpdate(id, { status: "Đã trả" });
+    const order = await Order.findById(id);
+    const arrProduct = Object.keys(order.products).map((key) => key);
+    await Promise.all(
+      arrProduct.map(async (productId) => {
+        const p = await Product.findById(productId);
+        if (p) {
+          p.quantity++;
+          await p.save();
+        }
+      })
+    );
+
     const orders = await Order.find().populate("owner", [
       "email",
       "name",

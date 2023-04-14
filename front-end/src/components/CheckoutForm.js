@@ -16,12 +16,15 @@ function CheckoutForm() {
   const [address, setAddress] = useState("");
   const [returnDate, setReturnDate] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [wrongDate, setWrongDate] = useState(false);
   const currentDate = new Date();
   function checkDate(e) {
     const selectedDate = new Date(e.target.value);
     if (selectedDate <= currentDate) {
       setShowToast(true);
+      setWrongDate(true);
     } else {
+      setWrongDate(false);
       setReturnDate(e.target.value);
       setShowToast(false);
     }
@@ -116,9 +119,19 @@ function CheckoutForm() {
           Bạn sẽ phải trả 20.000VND cho phí vận chuyển.
         </Badge>
         <Row></Row>
-        <Button className="mt-3 fs-14 text-white rounded-pill" type="submit">
-          Mượn sách ngay
-        </Button>
+        {wrongDate ? (
+          <Button
+            className="mt-3 fs-14 text-white rounded-pill"
+            disabled
+            type="submit"
+          >
+            Mượn sách ngay
+          </Button>
+        ) : (
+          <Button className="mt-3 fs-14 text-white rounded-pill" type="submit">
+            Mượn sách ngay
+          </Button>
+        )}
       </Form>
       {/* Toast */}
       {showToast && (

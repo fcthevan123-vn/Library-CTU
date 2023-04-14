@@ -27,6 +27,18 @@ function OrdersAdminPage() {
       .catch((e) => console.log(e));
   }
 
+  function markReturnBook(orderId, ownerId) {
+    axios
+      .patch(`/orders/${orderId}/mark-return-book`, { ownerId })
+      .then(({ data }) => {
+        const dataClone = data;
+        setLoading(false);
+        const sortedData = dataClone.reverse();
+        setOrders(sortedData);
+      })
+      .catch((e) => console.log(e));
+  }
+
   function showOrder(productsObj) {
     let productsToShow = products.filter((product) => productsObj[product._id]);
     productsToShow = productsToShow.map((product) => {
@@ -62,6 +74,34 @@ function OrdersAdminPage() {
 
   if (orders.length === 0) {
     return <h1 className="text-center pt-4">Không có yêu cầu nào ở đây</h1>;
+  }
+
+  function MarkStatus({ status, _id, owner }) {
+    if (status === "Đang xử lý") {
+      return (
+        <Button
+          style={{ fontSize: "13px" }}
+          size="sm"
+          className=" text-white"
+          onClick={() => markShipped(_id, owner?._id)}
+        >
+          Đánh dấu đã nhận sách
+        </Button>
+      );
+    } else if (status === "Đã nhận") {
+      return (
+        <Button
+          style={{ fontSize: "13px" }}
+          size="sm"
+          className=" text-white  "
+          onClick={() => markReturnBook(_id, owner?._id)}
+        >
+          Đánh dấu đã trả sách
+        </Button>
+      );
+    } else {
+      return <Badge bg="success">Đã trả sách</Badge>;
+    }
   }
 
   function TableRow({
@@ -100,7 +140,7 @@ function OrdersAdminPage() {
           )}
         </td>
         <td>
-          {status === "Đang xử lý" ? (
+          {/* {status === "Đang xử lý" ? (
             address ? (
               <Button
                 style={{ fontSize: "13px" }}
@@ -114,7 +154,7 @@ function OrdersAdminPage() {
               <Button
                 style={{ fontSize: "13px" }}
                 size="sm"
-                className="text-white"
+                className="text-white "
                 onClick={() => markShipped(_id, owner?._id)}
               >
                 Đánh dấu đã nhận sách
@@ -124,6 +164,11 @@ function OrdersAdminPage() {
             <Badge bg="success">Đã gửi</Badge>
           ) : (
             <Badge bg="success">Đã nhận</Badge>
+          )} */}
+          {status === "Đã trả" ? (
+            <Badge bg="success">Đã trả</Badge>
+          ) : (
+            <MarkStatus status={status} _id={_id} owner={owner}></MarkStatus>
           )}
         </td>
         <td>

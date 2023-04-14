@@ -15,6 +15,8 @@ function TakeBookDirect() {
   const [returnDate, setReturnDate] = useState("");
   const [takeBookDate, setTakeBookDate] = useState("");
   const [showToast, setShowToast] = useState(false);
+  const [wrongDate, setWrongDate] = useState(false);
+
   const currentDate = new Date();
 
   function handleRent() {
@@ -39,7 +41,9 @@ function TakeBookDirect() {
     var selectedDate = new Date(e.target.value);
     if (selectedDate <= currentDate) {
       setShowToast(true);
+      setWrongDate(true);
     } else {
+      setWrongDate(false);
       setTakeBookDate(e.target.value);
       setShowToast(false);
     }
@@ -118,9 +122,19 @@ function TakeBookDirect() {
           Lưu ý hãy đến nhận sách đúng với ngày bạn đã chọn.
         </Badge>
         <Row></Row>
-        <Button className="mt-3 rounded-pill text-white fs-14" type="submit">
-          Mượn sách ngay
-        </Button>
+        {wrongDate ? (
+          <Button
+            className="mt-3 fs-14 text-white rounded-pill"
+            disabled
+            type="submit"
+          >
+            Mượn sách ngay
+          </Button>
+        ) : (
+          <Button className="mt-3 fs-14 text-white rounded-pill" type="submit">
+            Mượn sách ngay
+          </Button>
+        )}
       </Form>
       {/* Toast */}
       {showToast && (

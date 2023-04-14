@@ -227,9 +227,11 @@ function OrdersPage() {
                             {/* {order.status === "Sách đã được gửi đi" } */}
                             {order.status === "Đang xử lý"
                               ? order.status
-                              : order.ship
-                              ? "Sách đã được gửi đi"
-                              : "Đã nhận tại thư viện"}
+                              : order.status === "Đã nhận"
+                              ? order.status
+                              : order.status === "Đã trả"
+                              ? order.status
+                              : ""}
                           </Badge>
                         </td>
                         <td>{order.date}</td>
